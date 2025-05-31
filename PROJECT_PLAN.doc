@@ -1,0 +1,463 @@
+Next.js Project Plan: Biobricks-inspired Website
+This document outlines the project plan, folder structure, and key considerations for building a website similar to biobricks.framer.website using Next.js, Sanity.io as a headless CMS, and Shadcn/ui for UI components.
+
+1. Project Overview
+   The goal is to create a modern, performant, and content-manageable website with distinct sections for showcasing projects, products, writings (blog), and technology stacks.
+
+Core Technologies:
+
+Framework: Next.js (App Router)
+
+CMS: Sanity.io
+
+UI Components: Shadcn/ui (which implies Tailwind CSS)
+
+Styling: Tailwind CSS, global CSS
+
+Deployment: Vercel (recommended for Next.js)
+
+Key Pages:
+
+Home (/)
+
+About (/about)
+
+Projects (/projects, projects/[slug])
+
+Products (/products, products/[slug])
+
+Writing/Blog (/blog, blog/[slug])
+
+Stacks (/stacks, stacks/[slug])
+
+2. Project Setup & Initial Configuration
+   Initialize Next.js Project:
+
+npx create-next-app@latest akwamfon-portfolio --typescript --tailwind --eslint
+cd akwamfon-portfolio
+
+Install Shadcn/ui:
+
+Follow the official Shadcn/ui installation guide: npx shadcn-ui@latest init
+
+This will set up components.json, Tailwind CSS configuration, and utility functions.
+
+Set up Sanity.io Project:
+
+Go to sanity.io/get-started and create a new project.
+
+Choose a schema template or start from scratch.
+
+Install the Sanity CLI: pnpm add -g @sanity/cli
+
+Initialize Sanity within your Next.js project (or a separate mono-repo folder): sanity init (choose "Connect to an existing Sanity project"). This will create a sanity subfolder.
+
+Install Necessary Libraries:
+
+pnpm add @sanity/client @sanity/image-url next-sanity date-fns lucide-react
+
+Environment Variables:
+
+Create .env.local in the root of your Next.js project.
+
+Add Sanity project ID, dataset, API version, and a token (if needed for write operations or preview mode).
+
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production" # or your dataset name
+NEXT_PUBLIC_SANITY_API_VERSION="2023-05-03" # use a recent date
+SANITY_API_READ_TOKEN="your_read_token" # if using for previews or authenticated fetching
+
+# For Sanity Studio (if embedded or for write operations from Next.js backend)
+
+# SANITY_API_WRITE_TOKEN="your_write_token"
+
+3. Folder Structure (Next.js App Router)
+   akwamfon-portfolio/
+   ├── app/ # App Router directory
+   │ ├── (site)/ # Route group for main site pages
+   │ │ ├── about/
+   │ │ │ └── page.tsx # /about
+   │ │ ├── blog/
+   │ │ │ ├── [slug]/
+   │ │ │ │ └── page.tsx # /blog/[slug]
+   │ │ │ └── page.tsx # /blog
+   │ │ ├── products/
+   │ │ │ ├── [slug]/
+   │ │ │ │ └── page.tsx # /products/[slug]
+   │ │ │ └── page.tsx # /products
+   │ │ ├── projects/
+   │ │ │ ├── [slug]/
+   │ │ │ │ └── page.tsx # /projects/[slug]
+   │ │ │ └── page.tsx # /projects
+   │ │ ├── stacks/
+   │ │ │ ├── [slug]/
+   │ │ │ │ └── page.tsx # /stacks/[slug]
+   │ │ │ └── page.tsx # /stacks
+   │ │ ├── layout.tsx # Layout for the (site) group
+   │ │ └── page.tsx # Homepage (/)
+   │ ├── api/ # API Routes (e.g., for revalidation, contact form)
+   │ │ └── revalidate/
+   │ │ └── route.ts # On-demand revalidation hook for Sanity
+   │ ├── sitemap.ts # For generating sitemap.xml
+   │ ├── robots.ts # For generating robots.txt
+   │ ├── favicon.ico
+   │ └── globals.css # Global styles
+   │ └── layout.tsx # Root layout
+   ├── components/ # Shared UI components
+   │ ├── icons/ # Custom icon components
+   │ ├── layout/ # Layout components (Footer, Navbar, Sidebar)
+   │ │ ├── Footer.tsx
+   │ │ └── Navbar.tsx
+   │ ├── blocks/ # Components for rendering Sanity portable text
+   │ │ └── PortableTextRenderer.tsx
+   │ ├── cards/ # Card components (ProjectCard, BlogCard, etc.)
+   │ │ ├── ProjectCard.tsx
+   │ │ └── BlogPreviewCard.tsx
+   │ ├── ui/ # Shadcn/ui components (automatically managed)
+   │ │ ├── button.tsx
+   │ │ └── ...
+   │ └── PageHeader.tsx # Reusable page header component
+   ├── config/ # Project configuration files
+   │ └── site.ts # Site metadata (title, description, URLs)
+   ├── lib/ # Utility functions and helpers
+   │ ├── sanity.ts # Sanity client configuration and fetch functions
+   │ ├── sanity.queries.ts # GROQ queries
+   │ ├── utils.ts # General utility functions (e.g., date formatting)
+   │ └── types.ts # TypeScript type definitions (especially for Sanity data)
+   ├── public/ # Static assets (images, fonts)
+   │ └── images/
+   ├── sanity/ # Sanity Studio configuration and schemas
+   │ ├── sanity.cli.ts # Sanity CLI config
+   │ ├── sanity.config.ts # Sanity Studio config
+   │ ├── schemas/
+   │ │ ├── documents/ # Document types
+   │ │ │ ├── post.ts # For Writing/Blog
+   │ │ │ ├── project.ts
+   │ │ │ ├── product.ts
+   │ │ │ ├── stack.ts
+   │ │ │ ├── category.ts # Moved from being defined inline
+   │ │ │ └── siteSettings.ts # For global site settings (logo, nav, footer)
+   │ │ ├── objects/ # Reusable object types for schemas
+   │ │ │ ├── blockContent.ts # Portable Text
+   │ │ │ ├── link.ts
+   │ │ │ └── mainImage.ts
+   │ │ └── index.ts # Exports all schemas
+   │ └── ...
+   ├── .env.local # Environment variables (ignored by Git)
+   ├── .eslintrc.json
+   ├── .gitignore
+   ├── next.config.mjs
+   ├── package.json
+   ├── postcss.config.js
+   ├── tailwind.config.ts
+   └── tsconfig.json
+
+Explanation of Key Directories:
+
+app/(site): This route group ensures that all pages within it can share the (site)/layout.tsx. This is useful for common navigation, header, and footer.
+
+app/api/revalidate: For setting up on-demand revalidation with Sanity webhooks. When content changes in Sanity, it can trigger a rebuild of specific pages in Next.js.
+
+components/layout: Contains structural components like Footer, Navbar.
+
+components/blocks: Components specifically for rendering complex data structures from Sanity, like Portable Text.
+
+components/cards: Reusable card components for displaying summaries of projects, blog posts, etc.
+
+lib/sanity.ts: Initializes the Sanity client (createClient) and might contain helper functions for fetching data.
+
+lib/sanity.queries.ts: Centralizes all GROQ queries. This makes them easier to manage and reuse.
+
+lib/types.ts: Defines TypeScript interfaces for the data fetched from Sanity, providing type safety.
+
+sanity/schemas: Contains all schema definitions for Sanity Studio.
+
+documents/: For top-level document types (e.g., a blog post, a project).
+
+objects/: For reusable data structures within documents (e.g., a custom image object with a caption, portable text).
+
+4. Sanity.io Schema Design
+   Define schemas in the sanity/schemas/documents/ and sanity/schemas/objects/ directories.
+
+Example Schemas:
+
+post.ts (for Writing/Blog):
+
+title (string)
+
+slug (slug, auto-generated from title)
+
+mainImage (image with alt text, caption)
+
+categories (array of references to category schema)
+
+publishedAt (datetime)
+
+body (portableText/blockContent)
+
+excerpt (text)
+
+project.ts:
+
+title (string)
+
+slug (slug)
+
+mainImage (image)
+
+images (array of images)
+
+description (portableText/blockContent)
+
+projectUrl (url)
+
+repositoryUrl (url)
+
+technologies (array of strings or references)
+
+status (string: e.g., "Completed", "In Progress")
+
+product.ts:
+
+name (string)
+
+slug (slug)
+
+tagline (string)
+
+mainImage (image)
+
+gallery (array of images)
+
+description (text)
+
+body (portableText/blockContent)
+
+liveDemo (url)
+
+buy (url)
+
+stack.ts:
+
+name (string)
+
+slug (slug)
+
+description (text)
+
+logo (image)
+
+details (portableText/blockContent)
+
+category.ts: (for blog posts, potentially projects/products)
+
+title (string)
+
+description (text)
+
+siteSettings.ts: (singleton document for global settings)
+
+siteTitle (string)
+
+siteDescription (text)
+
+logo (image)
+
+socialLinks (array of objects: platform, url)
+
+Portable Text (blockContent.ts in sanity/schemas/objects/):
+Configure this to allow for rich text editing, including custom components like code blocks, image galleries, or call-to-action buttons within the text editor.
+
+5. Component Strategy
+   Shadcn/ui: Leverage Shadcn/ui for foundational components (buttons, dialogs, cards, inputs, etc.). Add them to your project as needed: npx shadcn-ui@latest add [component-name].
+
+Custom Components:
+
+Layout Components (components/layout/): Footer, Navbar will manage the overall site structure and navigation. These will likely fetch data from siteSettings in Sanity.
+
+Page-Specific Components: Create components for specific sections within pages if they are complex (e.g., HeroSection for the homepage).
+
+Card Components (components/cards/): ProjectCard, ProductCard, BlogPreviewCard, StackCard for displaying items in lists.
+
+Portable Text Renderer (components/blocks/PortableTextRenderer.tsx): Use @portabletext/react to render rich text from Sanity. Customize it to render custom blocks or marks.
+
+Icon Components (components/icons/): Store custom SVG icons or use lucide-react.
+
+6. Page Implementation Strategy
+   For each page type (e.g., /blog/[slug].tsx):
+
+Data Fetching:
+
+Use Server Components by default.
+
+Fetch data from Sanity using functions defined in lib/sanity.ts and queries from lib/sanity.queries.ts.
+
+Example for a blog post page:
+
+// app/blog/[slug]/page.tsx
+import { getPostBySlug } from '@/lib/sanity.queries'; // Adjust path as needed
+import { PortableTextRenderer } from '@/components/blocks/PortableTextRenderer'; // Adjust path
+import { SanityImage } from '@/components/SanityImage'; // Example image component
+import { urlForImage } from '@/lib/sanity'; // Image URL builder
+import { notFound } from 'next/navigation';
+
+type Props = {
+params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props) {
+const post = await getPostBySlug(params.slug); // Implement this query
+if (!post) return { title: 'Not Found' };
+return { title: post.title, description: post.excerpt };
+}
+
+export default async function PostPage({ params }: Props) {
+const post = await getPostBySlug(params.slug); // Implement this query
+
+if (!post) {
+notFound(); // Triggers 404 page
+}
+
+return (
+<article className="prose lg:prose-xl dark:prose-invert mx-auto p-4">
+<h1>{post.title}</h1>
+{post.publishedAt && <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(post.publishedAt).toLocaleDateString()}</p>}
+{post.mainImage && (
+<div className="my-8">
+<SanityImage image={post.mainImage} alt={post.mainImage.alt || post.title} width={800} height={400} className="rounded-lg shadow-lg" />
+</div>
+)}
+{post.body && <PortableTextRenderer value={post.body} />}
+</article>
+);
+}
+
+// Optional: For generating static paths at build time
+// import { getAllPostSlugs } from '@/lib/sanity.queries'; // Implement this
+// export async function generateStaticParams() {
+// const slugs = await getAllPostSlugs();
+// return slugs.map((item) => ({ slug: item.slug }));
+// }
+
+Structure & Styling:
+
+Use semantic HTML.
+
+Apply Tailwind CSS classes for styling.
+
+Compose pages using Shadcn/ui components and custom components.
+
+Metadata:
+
+Implement generateMetadata for dynamic SEO titles, descriptions, and open graph tags.
+
+Image Optimization:
+
+Use a custom component like SanityImage (combining @sanity/image-url with next/image) for optimal image handling from Sanity.
+
+Sanity's image pipeline is powerful; configure @sanity/image-url (via urlForImage helper in lib/sanity.ts) to generate appropriate image sizes and formats.
+
+7. Styling
+   Tailwind CSS: Primary styling utility. Customize the Biobricks aesthetic using CSS variables for theme tokens like colors, fonts, and spacing in globals.css and tailwind.config.ts.
+
+Global Styles (app/globals.css): For base styles, font imports (@layer base), and global CSS variables (:root and [data-theme="dark"]).
+
+CSS Modules (Optional): For component-scoped styles if needed, though Tailwind often suffices.
+
+Shadcn/ui Theming: Customize Shadcn/ui components by adjusting CSS variables as per their documentation, often in globals.css.
+
+8. Key Features & Considerations
+   Responsive Design: Ensure all pages and components are fully responsive using Tailwind's responsive prefixes.
+
+Dark Mode: The reference site has a dark theme. Implement dark mode switching, potentially using next-themes and Tailwind's dark: variant (configured in tailwind.config.ts as darkMode: 'class').
+
+Animations & Transitions: The reference site uses subtle animations. Use Framer Motion or CSS animations for smooth transitions and interactive elements.
+
+SEO:
+
+Dynamic sitemap (app/sitemap.ts).
+
+Dynamic robots.txt (app/robots.ts).
+
+Structured data (JSON-LD) for rich snippets.
+
+Proper use of heading tags and ARIA attributes.
+
+Preview Mode: Implement Next.js Preview Mode to view draft content from Sanity before publishing. This will involve setting up a preview route and using the SANITY_API_READ_TOKEN with useCdn: false in the Sanity client for preview.
+
+On-Demand Revalidation: Set up Sanity webhooks to call your app/api/revalidate/route.ts endpoint to update static pages when content changes, avoiding full site rebuilds.
+
+Code Syntax Highlighting: For blog posts or project descriptions that include code, use a library like shiki or rehype-pretty-code with MDX or by customizing the Portable Text renderer.
+
+Performance:
+
+Leverage Next.js features: Server Components, Static Site Generation (SSG) where possible, Incremental Static Regeneration (ISR).
+
+Optimize images.
+
+Code splitting (handled by Next.js).
+
+Lazy load components and images below the fold.
+
+9. Sanity Studio Customization
+   Desk Structure: Customize the Sanity Studio desk structure (sanity/deskStructure.ts, if needed) for a better content editing experience, especially for singleton documents like siteSettings.
+
+Custom Input Components: If required, develop custom input components for Sanity.
+
+Validation: Add robust validation rules to your schemas.
+
+10. Deployment
+    Vercel: Recommended for seamless Next.js deployment. Connect your GitHub/GitLab/Bitbucket repository. Environment variables will be configured in the Vercel project settings.
+
+Sanity Webhooks: Configure webhooks in your Sanity project settings to point to your Next.js deployment's revalidation endpoint.
+
+11. Development Phases (Suggested)
+    Phase 1: Setup & Core Layout
+
+Next.js & Sanity project initialization.
+
+Basic folder structure.
+
+Implement root layout, footer, navigation.
+
+Set up siteSettings schema in Sanity and fetch data for global elements.
+
+Phase 2: Sanity Schemas & Basic Pages
+
+Define all Sanity schemas (posts, projects, products, stacks, etc.).
+
+Implement one content type end-to-end (e.g., Blog: list page, detail page, Sanity schema).
+
+Set up basic data fetching and rendering.
+
+Phase 3: Component Development & Styling
+
+Develop reusable card components, portable text renderer.
+
+Integrate Shadcn/ui components.
+
+Refine styling to match the desired aesthetic (including dark mode).
+
+Phase 4: Remaining Pages & Features
+
+Implement all remaining pages (About, Projects, Products, Stacks).
+
+Implement advanced features: search (if needed), animations, SEO enhancements.
+
+Phase 5: Preview, Revalidation & Testing
+
+Set up Next.js Preview Mode.
+
+Configure on-demand revalidation with Sanity webhooks.
+
+Thorough testing: functionality, responsiveness, cross-browser compatibility.
+
+Phase 6: Deployment & Optimization
+
+Deploy to Vercel.
+
+Performance optimization (Lighthouse scores).
+
+Final checks.
+
+This plan provides a solid foundation. Adjust it based on the specific nuances and priorities of your project. Good luck!
