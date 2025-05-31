@@ -34,7 +34,7 @@ const Navbar = () => {
 
   if (!mounted) return null;
   return (
-    <nav className="sticky top-0 z-30 py-3 bg-white w-full border-b border-gray-200 flex gap-2 items-center justify-end">
+    <nav className="sticky top-0 z-20 py-3 bg-white w-full border-b border-gray-200 flex gap-2 items-center justify-end">
       <section
         className={cn(
           'transition-all duration-300 ease-in-out w-full px-4',
@@ -125,6 +125,7 @@ const Navbar = () => {
             className="flex text-xs px-4 py-[.1rem] items-center gap-2 rounded-full font-normal"
           >
             Book an appointment
+            <Image src="/arrow.svg" alt="calendar" width={12} height={12} />
           </Button>
         </Link>
       </div>
