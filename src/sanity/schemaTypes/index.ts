@@ -5,7 +5,7 @@ import post from './documents/post';
 import project from './documents/project';
 import product from './documents/product';
 import stack from './documents/stack';
-
+import faq from './documents/faq';
 import siteSettings from './documents/siteSettings';
 
 // Object schemas
@@ -21,6 +21,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     product,
     stack,
     siteSettings,
+    faq,
 
     // Object types
     blockContent,

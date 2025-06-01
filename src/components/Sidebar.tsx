@@ -33,7 +33,8 @@ const Sidebar = () => {
 
   return (
     <div className="relative pr-5">
-       {!isMobile && <div className="absolute right-3 z-40 top-[2rem]">
+      {!isMobile && (
+        <div className="absolute right-3 z-40 top-[2rem]">
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="cursor-pointer group w-5 h-5 p-1 bg-black rounded-full"
@@ -49,7 +50,8 @@ const Sidebar = () => {
               )}
             />
           </button>
-        </div>}
+        </div>
+      )}
       <aside
         className={cn(
           'sticky bg-white grid-rows-[max-content_max-content_1fr_1fr] h-screen border-r border-gray-200 p-4 py-6 overflow-y-auto flex-1 z-30 transition-all duration-300',
@@ -57,7 +59,6 @@ const Sidebar = () => {
           isMobile ? 'hidden' : 'grid'
         )}
       >
-       
         <header className="flex gap-3 items-center mb-10">
           <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-300">
             {siteSettings?.logo?.url ? (
@@ -75,10 +76,10 @@ const Sidebar = () => {
           </div>
           {isSidebarOpen && (
             <article>
-              <h3 className="text-sm text-black font-medium">
+              <h3 className="text-base text-black font-medium">
                 {siteSettings?.siteTitle}
               </h3>
-              <p className="text-xs text-gray-500">
+              <p className="text-sm text-gray-500">
                 {siteSettings?.siteSubtitle}
               </p>
             </article>

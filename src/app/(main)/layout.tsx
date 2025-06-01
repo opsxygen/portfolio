@@ -2,6 +2,7 @@
 
 import Sidebar from '@/components/Sidebar';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function PageLayout({
   children,
@@ -9,12 +10,15 @@ export default function PageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="max-h-screen overflow-hidden grid grid-cols-1 md:grid-cols-[max-content_1fr]">
+    <div className="h-screen overflow-hidden grid grid-cols-1 md:grid-cols-[max-content_1fr]">
       <Sidebar />
 
       <main className="grid grid-rows-[max-content_1fr]">
         <Navbar />
-        {children}
+        <main className="h-[calc(100vh-5rem)] overflow-y-auto">
+          {children}
+          <Footer />
+        </main>
       </main>
     </div>
   );

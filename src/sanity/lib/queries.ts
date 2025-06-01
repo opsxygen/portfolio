@@ -15,6 +15,12 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   }
 }`;
 
+export const faqsQuery = groq`*[_type == "faq"] | order(order asc){
+  _id,
+  question,
+  answer
+}`;
+
 export type SiteSettings = {
   siteTitle: string;
   siteSubtitle: string;
@@ -28,4 +34,10 @@ export type SiteSettings = {
     url: string;
     initials: string;
   }>;
+};
+
+export type FAQ = {
+  _id: string;
+  question: string;
+  answer: string;
 };

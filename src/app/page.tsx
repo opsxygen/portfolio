@@ -3,7 +3,7 @@
 // import ServicesSection from '@/components/ServicesSection';
 // import ContactSection from '@/components/ContactSection';
 // import ProductsSpotlight from '@/components/ProductsSpotlight';
-// import Footer from '@/components/Footer';
+import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import Navbar from '@/components/Navbar';
 
@@ -21,6 +21,8 @@ export default function page() {
           <ContactSection />
           <ProductsSpotlight />
           <Footer /> */}
+
+          <Footer />
         </main>
       </section>
     </div>
