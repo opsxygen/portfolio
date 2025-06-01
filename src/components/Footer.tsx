@@ -149,7 +149,7 @@ const Footer = () => {
 
             <form
               onSubmit={handleSubscribe}
-              className="flex gap-2 bg-[#05050508] px-3 py-1 md:py-2 rounded-full"
+              className="grid grid-cols-2 md:flex gap-2 bg-[#05050508] px-3 py-1 md:py-2 rounded-full"
             >
               <input
                 type="email"

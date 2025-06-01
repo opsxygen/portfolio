@@ -15,7 +15,7 @@ export default function PageLayout({
 
       <main className="grid grid-rows-[max-content_1fr]">
         <Navbar />
-        <main className="h-[calc(100vh-5rem)] overflow-y-auto">
+        <main className="h-[calc(100vh-5rem)] pb-30 md:pb-10 overflow-y-auto">
           {children}
           <Footer />
         </main>

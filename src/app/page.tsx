@@ -14,7 +14,7 @@ export default function page() {
 
       <section className="grid grid-rows-[max-content_1fr]">
         <Navbar />
-        <main className="h-screen overflow-y-auto">
+        <main className="h-screen overflow-y-auto pb-30 md:pb-10">
           {/* <HeroSection />
           <ProjectsSection />
           <ServicesSection />
