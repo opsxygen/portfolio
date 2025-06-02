@@ -130,7 +130,7 @@ const Footer = () => {
   
 
   const formattedDate = format(currentTime, 'MMM d, yyyy - h:mm:ss a');
-  const location = 'FTC, Nigeria'; // This would typically come from a geolocation API or user settings
+  const location = 'FCT, Nigeria'; // This would typically come from a geolocation API or user settings
 
   return (
     <footer className="w-full bg-white py-10 px-4 md:px-6 lg:px-8">

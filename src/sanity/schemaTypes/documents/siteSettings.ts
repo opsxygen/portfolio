@@ -13,6 +13,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'siteEmail',
+      title: 'Site Email',
+      type: 'string',
+      description: 'The email of the site',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'siteSubtitle',
       title: 'Site Subtitle',
       type: 'string',

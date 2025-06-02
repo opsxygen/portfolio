@@ -1,11 +1,14 @@
-// import HeroSection from '@/components/HeroSection';
-// import ProjectsSection from '@/components/ProjectsSection';
-// import ServicesSection from '@/components/ServicesSection';
-// import ContactSection from '@/components/ContactSection';
-// import ProductsSpotlight from '@/components/ProductsSpotlight';
+import HeroSection from '@/components/HeroSection';
+import ProjectsSection from '@/components/ProjectsSection';
+import ServicesSection from '@/components/ServicesSection';
+
+import ProductsSpotlight from '@/components/ProductsSpotlight';
 import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import Navbar from '@/components/Navbar';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import StackSection from '@/components/StackSection';
+import WritingsSection from '@/components/WritingsSection';
 
 export default function page() {
   return (
@@ -15,13 +18,13 @@ export default function page() {
       <section className="grid grid-rows-[max-content_1fr]">
         <Navbar />
         <main className="h-screen overflow-y-auto pb-30 md:pb-10">
-          {/* <HeroSection />
+          <HeroSection />
           <ProjectsSection />
           <ServicesSection />
-          <ContactSection />
           <ProductsSpotlight />
-          <Footer /> */}
-
+          <TestimonialsSection />
+          <StackSection />
+          <WritingsSection />
           <Footer />
         </main>
       </section>

@@ -122,7 +122,7 @@ const Navbar = () => {
           <Button
             variant="default"
             size="sm"
-            className="flex text-xs px-4 py-[.1rem] items-center gap-2 rounded-full font-normal"
+            className="flex text-xs px-4 py-[.1rem] items-center justify-center gap-2 rounded-full font-normal"
           >
             Book an appointment
             <Image src="/arrow.svg" alt="calendar" width={12} height={12} />
