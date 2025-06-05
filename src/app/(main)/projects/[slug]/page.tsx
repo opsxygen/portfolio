@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
-import { PortableText } from '@portabletext/react';
 import ProjectCard from '@/components/ProjectCard';
 import { PortableTextComponent } from '@/components/PortableTextComponent';
 

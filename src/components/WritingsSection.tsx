@@ -3,18 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Post } from '@/sanity/lib/queries';
-import { urlFor } from '@/sanity/lib/image';
 import ArticleCard from './ArticleCard';
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-};
-
 
 const WritingsSection = ({ writings }: { writings: Post[] }) => {
   return (
