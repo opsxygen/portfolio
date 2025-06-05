@@ -11,17 +11,17 @@ import { Gallery } from '@/components/Gallery';
 
 import { Metadata } from 'next';
 
+export type paramsType = Promise<{ id: string }>;
 type PageProps = {
-  params: {
-    slug: string;
-  };
+  params: paramsType;
 };
 
 // Generate metadata for the page
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const product = await getProductBySlug(params.slug);
+  const { id } = await params;
+  const product = await getProductBySlug(id);
 
   if (!product) {
     return {
@@ -51,9 +51,10 @@ export async function generateMetadata({
 }
 
 export default async function ProductPage({ params }: PageProps) {
+  const { id } = await params;
   const [product, randomProducts] = await Promise.all([
-    getProductBySlug(params.slug),
-    getRandomProducts(3, params.slug),
+    getProductBySlug(id),
+    getRandomProducts(3, id),
   ]);
 
   if (!product) {

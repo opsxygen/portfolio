@@ -7,17 +7,17 @@ import { PortableTextComponent } from '@/components/PortableTextComponent';
 
 import { Metadata } from 'next';
 
+export type paramsType = Promise<{ id: string }>;
 type PageProps = {
-  params: {
-    slug: string;
-  };
+  params: paramsType;
 };
 
 // Generate metadata for the page
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const writing = await getWritingBySlug(params.slug);
+  const { id } = await params;
+  const writing = await getWritingBySlug(id);
 
   if (!writing) {
     return {
@@ -47,9 +47,10 @@ export async function generateMetadata({
 }
 
 export default async function WritingPage({ params }: PageProps) {
+  const { id } = await params;
   const [writing, randomWritings] = await Promise.all([
-    getWritingBySlug(params.slug),
-    getRandomWritings(2, params.slug),
+    getWritingBySlug(id),
+    getRandomWritings(2, id),
   ]);
 
   if (!writing) {

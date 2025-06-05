@@ -7,17 +7,17 @@ import { PortableTextComponent } from '@/components/PortableTextComponent';
 
 import { Metadata } from 'next';
 
+export type paramsType = Promise<{ id: string }>;
 type PageProps = {
-  params: {
-    slug: string;
-  };
+  params: paramsType;
 };
 
 // Generate metadata for the page
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { id } = await params;
+  const project = await getProjectBySlug(id);
 
   if (!project) {
     return {
@@ -47,9 +47,10 @@ export async function generateMetadata({
 }
 
 export default async function ProjectPage({ params }: PageProps) {
+  const { id } = await params;
   const [project, randomProjects] = await Promise.all([
-    getProjectBySlug(params.slug),
-    getRandomProjects(3, params.slug),
+    getProjectBySlug(id),
+    getRandomProjects(3, id),
   ]);
 
   if (!project) {
