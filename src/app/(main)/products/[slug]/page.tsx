@@ -11,7 +11,7 @@ import { Gallery } from '@/components/Gallery';
 
 import { Metadata } from 'next';
 
-export type paramsType = Promise<{ id: string }>;
+export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
   params: paramsType;
 };
@@ -20,8 +20,8 @@ type PageProps = {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const product = await getProductBySlug(id);
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return {
@@ -51,10 +51,10 @@ export async function generateMetadata({
 }
 
 export default async function ProductPage({ params }: PageProps) {
-  const { id } = await params;
+  const { slug } = await params;
   const [product, randomProducts] = await Promise.all([
-    getProductBySlug(id),
-    getRandomProducts(3, id),
+    getProductBySlug(slug),
+    getRandomProducts(3, slug),
   ]);
 
   if (!product) {

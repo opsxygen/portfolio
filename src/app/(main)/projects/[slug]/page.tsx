@@ -7,7 +7,7 @@ import { PortableTextComponent } from '@/components/PortableTextComponent';
 
 import { Metadata } from 'next';
 
-export type paramsType = Promise<{ id: string }>;
+export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
   params: paramsType;
 };
@@ -16,8 +16,8 @@ type PageProps = {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const project = await getProjectBySlug(id);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     return {
@@ -47,10 +47,10 @@ export async function generateMetadata({
 }
 
 export default async function ProjectPage({ params }: PageProps) {
-  const { id } = await params;
+  const { slug } = await params;
   const [project, randomProjects] = await Promise.all([
-    getProjectBySlug(id),
-    getRandomProjects(3, id),
+    getProjectBySlug(slug),
+    getRandomProjects(3, slug),
   ]);
 
   if (!project) {

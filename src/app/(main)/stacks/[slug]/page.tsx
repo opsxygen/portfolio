@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 
 import { Metadata } from 'next';
 
-export type paramsType = Promise<{ id: string }>;
+export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
   params: paramsType;
 };
@@ -17,8 +17,8 @@ type PageProps = {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const stack = await getStackBySlug(id);
+  const { slug } = await params;
+  const stack = await getStackBySlug(slug);
 
   if (!stack) {
     return {
@@ -48,10 +48,10 @@ export async function generateMetadata({
 }
 
 export default async function StackPage({ params }: PageProps) {
-  const { id } = await params;
+  const { slug } = await params;
   const [stack, randomStacks] = await Promise.all([
-    getStackBySlug(id),
-    getRandomStacks(3, id),
+    getStackBySlug(slug),
+    getRandomStacks(3, slug),
   ]);
 
   if (!stack) {
