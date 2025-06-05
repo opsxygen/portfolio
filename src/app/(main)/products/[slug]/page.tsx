@@ -9,14 +9,18 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Gallery } from '@/components/Gallery';
 
-interface PageProps {
+import { Metadata } from 'next';
+
+type PageProps = {
   params: {
     slug: string;
   };
-}
+};
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const product = await getProductBySlug(params.slug);
 
   if (!product) {
@@ -66,7 +70,7 @@ export default async function ProductPage({ params }: PageProps) {
         </header>
 
         <section>
-          <Gallery media={product.gallery} title="Product Gallery" />
+          <Gallery media={product.gallery} />
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">

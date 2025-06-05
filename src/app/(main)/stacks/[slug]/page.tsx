@@ -6,14 +6,18 @@ import { urlFor } from '@/sanity/lib/image';
 import StackCard from '@/components/StackCard';
 import { Button } from '@/components/ui/button';
 
-interface PageProps {
+import { Metadata } from 'next';
+
+type PageProps = {
   params: {
     slug: string;
   };
-}
+};
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const stack = await getStackBySlug(params.slug);
 
   if (!stack) {

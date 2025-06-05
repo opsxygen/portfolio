@@ -5,14 +5,18 @@ import { urlFor } from '@/sanity/lib/image';
 import ProjectCard from '@/components/ProjectCard';
 import { PortableTextComponent } from '@/components/PortableTextComponent';
 
-interface PageProps {
+import { Metadata } from 'next';
+
+type PageProps = {
   params: {
     slug: string;
   };
-}
+};
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const writing = await getWritingBySlug(params.slug);
 
   if (!writing) {
