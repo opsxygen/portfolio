@@ -4,7 +4,7 @@ import { urlFor } from '@/sanity/lib/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
- 
+
 import { getImageDimensions } from '@/lib/utils';
 
 interface PhotoGalleryProps {
@@ -18,10 +18,9 @@ interface PhotoGalleryProps {
       };
     };
   }[];
-  title: string;
 }
 
-export function Gallery({ media, title }: PhotoGalleryProps) {
+export function Gallery({ media }: PhotoGalleryProps) {
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -31,7 +30,6 @@ export function Gallery({ media, title }: PhotoGalleryProps) {
     autoplay: true,
     fade: true,
     arrows: true,
- 
   };
 
   const images = media.map((m) => {
