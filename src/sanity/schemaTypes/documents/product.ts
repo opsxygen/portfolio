@@ -50,6 +50,14 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+      placeholder: 'eg. 1000',
+      description: 'The price of the product',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'gallery',
       title: 'Gallery',
       type: 'array',
@@ -94,14 +102,14 @@ export default defineType({
       title: 'Live Demo URL',
       type: 'url',
       description: 'Link to a live demo of the product',
-      validation: (Rule) => Rule.required(),
+ 
     }),
     defineField({
       name: 'buy',
       title: 'Buy URL',
       type: 'url',
       description: 'Link to purchase or download the product',
-      validation: (Rule) => Rule.required(),
+    
     }),
   ],
   preview: {

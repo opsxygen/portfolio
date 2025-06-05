@@ -12,6 +12,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       siteTitle: 'Akwamfon Portfolio',
       siteSubtitle: 'Personal Portfolio',
       siteDescription: 'Product Designer',
+      siteTagline: 'Product Designer',
+      bookAppointmentLink: '/',
       logo: {
         url: '',
         alt: 'AK'

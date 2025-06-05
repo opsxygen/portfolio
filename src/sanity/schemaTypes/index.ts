@@ -8,6 +8,7 @@ import stack from './documents/stack';
 import faq from './documents/faq';
 import siteSettings from './documents/siteSettings';
 import testimonials from './documents/testimonials';
+import service from './documents/services';
 
 // Object schemas
 import blockContent from './objects/blockContent';
@@ -24,7 +25,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     siteSettings,
     faq,
     testimonials,
-
+    service,
     // Object types
     blockContent,
     link,

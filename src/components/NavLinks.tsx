@@ -21,8 +21,8 @@ const links = [
     iconAlt: 'product-black',
   },
   {
-    href: '/writing',
-    label: 'Writing',
+    href: '/writings',
+    label: 'Writings',
     icon: 'post',
     iconAlt: 'post-black',
   },

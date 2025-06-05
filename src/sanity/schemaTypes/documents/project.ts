@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -11,6 +12,14 @@ export default defineType({
       type: 'string',
       placeholder: 'eg. Project Name',
       description: 'The title of the project',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'fullTitle',
+      title: 'Full Title',
+      type: 'string',
+      placeholder: 'eg. Project Full Name',
+      description: 'The full title of the project',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -58,65 +67,25 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'images',
-      title: 'Gallery Images',
-      description: 'The gallery images of the project',
-      type: 'array',
-      of: [
-        {
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text',
-            },
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-            },
-          ],
-        },
-      ],
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       validation: (Rule) => Rule.required(),
       description: 'The description of the project',
-      type: 'blockContent',
+      type: 'text',
     }),
-    defineField({
-      name: 'projectUrl',
-      title: 'Project URL',
-      validation: (Rule) => Rule.required(),
-      description: 'The URL of the project',
-      type: 'url',
-    }),
+
     defineField({
       name: 'publishedAt',
       title: 'Published At',
       validation: (Rule) => Rule.required(),
       description: 'The date the project was published',
       type: 'datetime',
-    }),
-    defineField({
-      name: 'status',
-      title: 'Status',
-      description: 'The status of the project',
-      validation: (Rule) => Rule.required(),
-      type: 'string',
-      options: {
-        list: [
-          { title: 'In Progress', value: 'in-progress' },
-          { title: 'Completed', value: 'completed' },
-          { title: 'Archived', value: 'archived' },
-        ],
-      },
     }),
   ],
   preview: {

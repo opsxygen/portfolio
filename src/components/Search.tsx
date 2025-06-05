@@ -6,12 +6,13 @@ import { searchContent } from '@/sanity/lib/searchService';
 import { SearchResults } from './SearchResults';
 import { useDebounce } from '@/lib/hooks/useDebounce';
 
-
-
 export const Search = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<SearchResult>({ projects: [], products: [] });
+  const [searchResults, setSearchResults] = useState<SearchResult>({
+    projects: [],
+    products: [],
+  });
   const [isLoading, setIsLoading] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -57,9 +58,11 @@ export const Search = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
         <section className="px-5 fixed w-full h-screen z-50">
           <div
             onClick={handleCloseSearch}
-            className="fixed top-0 left-0 w-full h-screen z-30 inset-0 bg-gray-900/60 bg-opacity-50 py-50 flex justify-center"
+            className="fixed top-0 left-0 w-full h-screen z-10 inset-0 bg-gray-900/60 bg-opacity-50 py-50 flex justify-center"
           ></div>
-          <div className="relative flex flex-col items-center justify-center z-40 max-w-xl mx-auto md:mt-[calc(100vh-80svh)] mt-[calc(100vh-100svh)]">
+ 
+
+          <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center justify-center z-50 w-[90vw] max-w-4xl mx-auto">
             <div className="w-full relative">
               <input
                 ref={searchInputRef}
@@ -74,14 +77,24 @@ export const Search = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                   onClick={() => setSearchTerm('')}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                   </svg>
                 </button>
               )}
             </div>
-            
+
             {(searchTerm.trim().length > 0 || isLoading) && (
               <div className="w-full mt-2">
                 <SearchResults
@@ -95,7 +108,7 @@ export const Search = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
           </div>
         </section>
       )}
-      
+
       <section className="flex items-end">
         <div className="mt-8 grid w-full">
           {!isSidebarOpen && (

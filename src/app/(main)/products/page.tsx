@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Project } from '@/sanity/lib/queries';
+import { Product } from '@/sanity/lib/queries';
 import { client } from '@/sanity/lib/client';
-import ProjectCard from '@/components/ProjectCard';
+import ProductCard from '@/components/ProductCard';
 
-const Projects = async () => {
+const Products = async () => {
   // Fetch projects
-  const projects = await client.fetch<Project[]>(
-    `*[_type == "project"] | order(_createdAt desc)`
+  const products = await client.fetch<Product[]>(
+    `*[_type == "product"] | order(_createdAt desc)`
   );
 
   return (
@@ -30,18 +30,18 @@ const Projects = async () => {
         </div>
 
         <article className="mb-8">
-          <h2 className="text-[1.25rem] font-medium mb-2">My Latest Works</h2>
+          <h2 className="text-[1.25rem] font-medium mb-2">
+            Products spotlight
+          </h2>
           <p className="text-gray-600 text-[0.875rem] max-w-[65ch]">
-            I present my top-tier projects, meticulously crafted with unwavering
-            passion, simplicity, boundless creativity, and unparalleled
-            attention to detail.
+            Some of the recent product releases.
           </p>
         </article>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link href={`/projects/${project.slug.current}`} key={project._id}>
-              <ProjectCard project={project} />
+          {products.map((product) => (
+            <Link href={`/products/${product.slug.current}`} key={product._id}>
+              <ProductCard product={product} />
             </Link>
           ))}
         </div>
@@ -50,4 +50,4 @@ const Projects = async () => {
   );
 };
 
-export default Projects;
+export default Products;

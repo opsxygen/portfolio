@@ -12,6 +12,7 @@ import { SocialLinks } from './SocialLinks';
 import { getSiteSettings } from '@/sanity/lib/getSiteSettings';
 import { SiteSettings } from '@/sanity/lib/queries';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
 
 const Navbar = () => {
   const [mounted, setMounted] = useState(false);
@@ -43,9 +44,9 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between w-full">
           <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-300">
-            {siteSettings?.logo?.url ? (
+            {siteSettings?.logo ? (
               <Image
-                src={siteSettings.logo.url}
+                src={urlFor(siteSettings.logo).url()}
                 alt={siteSettings.logo.alt || 'Site Logo'}
                 fill
                 className="object-cover"
@@ -118,7 +119,7 @@ const Navbar = () => {
           <span className="animate-pulse bg-green-500 h-2 w-2 rounded-full"></span>
           Available for work
         </Button>
-        <Link href="/">
+        <Link href={siteSettings?.bookAppointmentLink || '/'}>
           <Button
             variant="default"
             size="sm"

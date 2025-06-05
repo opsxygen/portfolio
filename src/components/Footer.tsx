@@ -133,11 +133,11 @@ const Footer = () => {
   const location = 'FCT, Nigeria'; // This would typically come from a geolocation API or user settings
 
   return (
-    <footer className="w-full bg-white py-10 px-4 md:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <footer className="w-full bg-white py-10">
+      <div className="max-w-4xl mx-auto px-4 md:px-0">
         {/* Newsletter Section */}
         <div className="bg-gray-50 rounded-lg mb-10">
-          <div className="grid items-center gap-y-4 grid-cols-1 md:grid-cols-[max-content_1fr] gap-x-10 border bg-[#fafafa] px-[1.25rem] py-[2.5rem] rounded-2xl">
+          <div className="grid items-center gap-y-4 grid-cols-1 lg:grid-cols-[max-content_1fr] gap-x-10 border bg-[#fafafa] px-[1.25rem] py-[2.5rem] rounded-2xl">
             <article>
               <h3 className="text-[1.125rem] font-medium mb-1">
                 Subscribe to Our Newsletter

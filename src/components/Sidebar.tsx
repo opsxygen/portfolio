@@ -7,29 +7,20 @@ import { useMediaQuery } from 'react-responsive';
 import { NavLinks } from './NavLinks';
 import { SocialLinks } from './SocialLinks';
 import { Search } from './Search';
-import { getSiteSettings } from '@/sanity/lib/getSiteSettings';
 import { SiteSettings } from '@/sanity/lib/queries';
+import { urlFor } from '@/sanity/lib/image';
 
-const Sidebar = () => {
-  const [mounted, setMounted] = useState(false);
-  const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
-
+const Sidebar = ({ siteSettings }: { siteSettings: SiteSettings }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [isSidebarOpen, setIsSidebarOpen] = useState(isMobile ? false : true);
+  const isTablet = useMediaQuery({ maxWidth: 1024 });
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
-    // Fetch site settings
-    const fetchSettings = async () => {
-      const settings = await getSiteSettings();
-      setSiteSettings(settings);
-    };
-
-    fetchSettings();
-  }, []);
-
-  if (!mounted) return null;
+    if (isMobile) setIsSidebarOpen(false);
+    if (isTablet) setIsSidebarOpen(false);
+    if (!isMobile && !isTablet) setIsSidebarOpen(true);
+  }, [isMobile, isTablet]);
 
   return (
     <div className="relative pr-5">
@@ -54,23 +45,24 @@ const Sidebar = () => {
       )}
       <aside
         className={cn(
-          'sticky bg-white grid-rows-[max-content_max-content_1fr_1fr] h-screen border-r border-gray-200 p-4 py-6 overflow-y-auto flex-1 z-30 transition-all duration-300',
+          'sticky bg-white grid-rows-[max-content_max-content_1fr] h-screen border-r border-gray-200 p-4 py-6 overflow-y-auto flex-1 z-30 transition-all duration-300',
           isSidebarOpen ? 'w-60' : 'w-max',
           isMobile ? 'hidden' : 'grid'
         )}
       >
         <header className="flex gap-3 items-center mb-10">
           <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-300">
-            {siteSettings?.logo?.url ? (
+            {siteSettings?.logo ? (
               <Image
-                src={siteSettings.logo.url}
+                src={urlFor(siteSettings.logo).url()}
                 alt={siteSettings.logo.alt || 'Site Logo'}
                 fill
                 className="object-cover"
+                sizes="40px"
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-gray-600">
-                <span>{siteSettings?.siteTitle.match(/\b\w/g)?.join('')}</span>
+                <span>{siteSettings?.siteTitle?.match(/\b\w/g)?.join('')}</span>
               </div>
             )}
           </div>
@@ -92,7 +84,9 @@ const Sidebar = () => {
           <SocialLinks isSidebarOpen={isSidebarOpen} />
         </section>
 
-        <Search isSidebarOpen={isSidebarOpen} />
+        <section className="flex justify-end">
+          <Search isSidebarOpen={isSidebarOpen} />
+        </section>
       </aside>
     </div>
   );

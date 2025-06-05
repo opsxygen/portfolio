@@ -16,8 +16,8 @@ export const NAV_ITEMS = [
     href: '/products',
   },
   {
-    title: 'Writing',
-    href: '/writing',
+    title: 'Writings',
+    href: '/writings',
   },
   {
     title: 'Stacks',

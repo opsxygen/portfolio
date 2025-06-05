@@ -6,6 +6,13 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'siteTagline',
+      title: 'Site Tagline',
+      type: 'string',
+      description: 'The tagline of the site',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'siteTitle',
       title: 'Site Title',
       type: 'string',
@@ -25,6 +32,12 @@ export default defineType({
       type: 'string',
       description: 'The subtitle of the site',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'bookAppointmentLink',
+      title: 'Book Appointment Link',
+      type: 'url',
+      description: 'The link to book an appointment',
     }),
     defineField({
       name: 'siteDescription',
