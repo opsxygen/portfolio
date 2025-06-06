@@ -9,6 +9,7 @@ import { SocialLinks } from './SocialLinks';
 import { Search } from './Search';
 import { SiteSettings } from '@/sanity/lib/queries';
 import { urlFor } from '@/sanity/lib/image';
+import Link from 'next/link';
 
 const Sidebar = ({ siteSettings }: { siteSettings: SiteSettings }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -45,38 +46,42 @@ const Sidebar = ({ siteSettings }: { siteSettings: SiteSettings }) => {
       )}
       <aside
         className={cn(
-          'sticky bg-white grid-rows-[max-content_max-content_1fr] h-screen border-r border-gray-200 p-4 py-6 overflow-y-auto flex-1 z-30 transition-all duration-300',
-          isSidebarOpen ? 'w-60' : 'w-max',
+          'sticky bg-white grid-rows-[max-content_max-content_1fr] h-screen border-r border-gray-200 p-4 py-6 overflow-y-auto my-scrollable-element flex-1 z-30 transition-all duration-300',
+          isSidebarOpen ? 'w-70' : 'w-max',
           isMobile ? 'hidden' : 'grid'
         )}
       >
-        <header className="flex gap-3 items-center mb-10">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-300">
-            {siteSettings?.logo ? (
-              <Image
-                src={urlFor(siteSettings.logo).url()}
-                alt={siteSettings.logo.alt || 'Site Logo'}
-                fill
-                className="object-cover"
-                sizes="40px"
-              />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-gray-600">
-                <span>{siteSettings?.siteTitle?.match(/\b\w/g)?.join('')}</span>
-              </div>
+        <Link href="/">
+          <header className="flex gap-3 items-center mb-10">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-300">
+              {siteSettings?.logo ? (
+                <Image
+                  src={urlFor(siteSettings.logo).url()}
+                  alt={siteSettings.logo.alt || 'Site Logo'}
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-gray-600">
+                  <span>
+                    {siteSettings?.siteTitle?.match(/\b\w/g)?.join('')}
+                  </span>
+                </div>
+              )}
+            </div>
+            {isSidebarOpen && (
+              <article>
+                <h3 className="text-[14px] text-black font-medium">
+                  {siteSettings?.siteTitle}
+                </h3>
+                <p className="text-[12px] text-gray-500">
+                  {siteSettings?.siteSubtitle}
+                </p>
+              </article>
             )}
-          </div>
-          {isSidebarOpen && (
-            <article>
-              <h3 className="text-base text-black font-medium">
-                {siteSettings?.siteTitle}
-              </h3>
-              <p className="text-sm text-gray-500">
-                {siteSettings?.siteSubtitle}
-              </p>
-            </article>
-          )}
-        </header>
+          </header>
+        </Link>
 
         <section>
           <NavLinks isSidebarOpen={isSidebarOpen} />

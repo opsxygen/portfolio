@@ -16,7 +16,7 @@ const ProjectsSection = ({ projects }: { projects: Project[] }) => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto border-t py-12 px-4 md:px-0 border-gray-200">
+    <section className="max-w-3xl mx-auto border-t py-12 px-4 md:px-0 border-gray-200">
       <div className="mb-8">
         <h2 className="text-[1.25rem] font-medium mb-2">My Latest Works</h2>
         <p className="text-gray-600 text-[0.875rem] max-w-[65ch]">

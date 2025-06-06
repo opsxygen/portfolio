@@ -9,6 +9,9 @@ import faq from './documents/faq';
 import siteSettings from './documents/siteSettings';
 import testimonials from './documents/testimonials';
 import service from './documents/services';
+import education from './documents/education';
+import workExperience from './documents/workExperience';
+import certifications from './documents/certifications';
 
 // Object schemas
 import blockContent from './objects/blockContent';
@@ -30,5 +33,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blockContent,
     link,
     mainImage,
+    education,
+    workExperience,
+    certifications,
   ],
 };

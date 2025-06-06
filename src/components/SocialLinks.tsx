@@ -51,6 +51,7 @@ export const SocialLinks = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
             <Link
               key={social.initial}
               href={social.href}
+              target="_blank"
               className={cn(
                 'p-2 rounded-sm flex items-center justify-between py-2 group',
                 pathname === social.href

@@ -38,8 +38,6 @@ export default async function page() {
     client.fetch(`*[_type == \"service\"] | order(_createdAt desc)`),
   ]);
 
-  console.log({siteSettings});
-
   return (
     <div className="max-h-screen overflow-hidden grid grid-cols-1 md:grid-cols-[max-content_1fr]">
       <Sidebar siteSettings={siteSettings} />

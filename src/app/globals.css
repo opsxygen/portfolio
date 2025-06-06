@@ -140,3 +140,54 @@ html {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #fffcfc #fffcfc; /* light gray thumb and very light track */
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #fffcfc;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #fffcfc;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #fffcfc; /* hover effect */
+}
+
+/* Firefox */
+.my-scrollable-element {
+  scrollbar-width: thin;
+  scrollbar-color: #fffcfc #fffcfc; /* light gray thumb and very light track */
+}
+ 
+.my-scrollable-element:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #fffcfc #fffcfc; /* light gray thumb and very light track */
+}
+
+/* Chrome, Edge, Safari */
+.my-scrollable-element::-webkit-scrollbar {
+  width: 8px;
+}
+
+.my-scrollable-element::-webkit-scrollbar-track {
+  background: #fffcfc;
+}
+
+.my-scrollable-element::-webkit-scrollbar-thumb {
+  background: #fffcfc;
+  border-radius: 4px;
+}
+
+.my-scrollable-element::-webkit-scrollbar-thumb:hover {
+  background: #fffcfc; /* hover effect */
+}

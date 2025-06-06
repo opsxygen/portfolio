@@ -60,9 +60,8 @@ export const Search = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
             onClick={handleCloseSearch}
             className="fixed top-0 left-0 w-full h-screen z-10 inset-0 bg-gray-900/60 bg-opacity-50 py-50 flex justify-center"
           ></div>
- 
 
-          <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center justify-center z-50 w-[90vw] max-w-4xl mx-auto">
+          <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col items-center justify-center z-50 w-[90vw] max-w-3xl mx-auto">
             <div className="w-full relative">
               <input
                 ref={searchInputRef}

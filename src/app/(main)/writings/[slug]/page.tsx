@@ -67,7 +67,7 @@ export default async function WritingPage({ params }: PageProps) {
 
   return (
     <main className="border-b pb-8 mb-8">
-      <div className="max-w-4xl mx-auto py-12 px-4 md:px-0 grid gap-4">
+      <div className="max-w-3xl mx-auto py-12 px-4 md:px-0 grid gap-4">
         <header className="mb-8">
           <h1 className="text-2xl md:text-3xl font-medium mb-2">
             {writing.title}

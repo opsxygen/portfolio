@@ -74,7 +74,8 @@ export const servicesQuery = groq`*[_type == "service"] | order(_createdAt desc)
   title,
   description,
   startPrice,
-  image
+  image,
+  linkTo
 }`;
 
 export type Service = {
@@ -86,7 +87,8 @@ export type Service = {
     url: string;
     alt: string;
   };
-};
+  linkTo: string;
+  };
 
 export const productsQuery = groq`*[_type == "product"] | order(_createdAt desc){
   _id,
@@ -150,13 +152,13 @@ export type Post = {
   publishedAt: string;
 };
 
-
 export const stackQuery = groq`*[_type == "stack"] | order(orderRank){
   _id,
   name,
   tagline,
   description,
   logo,
+  url,
   slug
 }`;
 
@@ -172,8 +174,8 @@ export type Stack = {
   slug: {
     current: string;
   };
+  url: string;
 };
-
 
 export const testimonialsQuery = groq`*[_type == "testimonials"] | order(_createdAt desc){
   _id,

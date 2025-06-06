@@ -32,7 +32,6 @@ export default function ContactPage() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
-    // @ts-expect-error: zodResolver is not compatible with useForm
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: '',
@@ -98,7 +97,7 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 md:px-0">
+    <div className="max-w-3xl mx-auto py-12 px-4 md:px-0">
       {/* Back to homepage link */}
       <div className="mb-8">
         <Link

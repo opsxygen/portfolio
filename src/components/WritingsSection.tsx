@@ -7,7 +7,7 @@ import ArticleCard from './ArticleCard';
 
 const WritingsSection = ({ writings }: { writings: Post[] }) => {
   return (
-    <section className="max-w-4xl mx-auto py-12 px-4 md:px-0 border-t border-gray-200">
+    <section className="max-w-3xl mx-auto py-12 px-4 md:px-0 border-t border-gray-200">
       <div className="mb-8">
         <h2 className="text-[1.25rem] font-medium mb-2">
           Latest articles & publications

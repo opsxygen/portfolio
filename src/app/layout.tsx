@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { getSiteSettings } from '@/sanity/lib/getSiteSettings';
+import { urlFor } from '@/sanity/lib/image';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -11,12 +12,15 @@ const inter = Inter({
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
-  
+
   return {
-    title: settings.siteTitle,
+    title: `${settings.siteTitle} - ${settings.siteSubtitle}`,
     description: settings.siteDescription,
+    icons: {
+      icon: urlFor(settings.logo).url(),
+    },
   };
-};
+}
 
 export default function RootLayout({
   children,

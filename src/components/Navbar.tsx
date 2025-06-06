@@ -119,7 +119,7 @@ const Navbar = () => {
           <span className="animate-pulse bg-green-500 h-2 w-2 rounded-full"></span>
           Available for work
         </Button>
-        <Link href={siteSettings?.bookAppointmentLink || '/'}>
+        <Link target="_blank" href={siteSettings?.bookAppointmentLink || '/'}>
           <Button
             variant="default"
             size="sm"

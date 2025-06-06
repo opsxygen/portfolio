@@ -63,7 +63,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <main className="border-b pb-8 mb-8">
-      <div className="max-w-4xl mx-auto py-12 px-4 md:px-0 grid gap-8">
+      <div className="max-w-3xl mx-auto py-12 px-4 md:px-0 grid gap-8">
         <header className="mb-8">
           <h1 className="text-[28px] font-medium mb-1">{product.name}</h1>
           <h3 className="text-[16px] mb-2">{product.tagline}</h3>

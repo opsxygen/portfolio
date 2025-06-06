@@ -7,6 +7,7 @@ import StackCard from '@/components/StackCard';
 import { Button } from '@/components/ui/button';
 
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
@@ -60,7 +61,7 @@ export default async function StackPage({ params }: PageProps) {
 
   return (
     <main className="border-b pb-8 mb-8">
-      <div className="max-w-4xl mx-auto py-12 px-4 md:px-0 grid gap-4">
+      <div className="max-w-3xl mx-auto py-12 px-4 md:px-0 grid gap-4">
         <article className="bg-[#05050508] group relative flex flex-col md:flex-row items-start gap-4 justify-start p-4 rounded-xl transition-colors hover:bg-gray-50 border">
           <div className="relative w-[64px] h-[64px] flex items-center justify-center rounded-md bg-gray-100">
             {stack.logo ? (
@@ -100,18 +101,22 @@ export default async function StackPage({ params }: PageProps) {
                 <h3 className="text-[20px] font-medium">{stack.name}</h3>
                 <p className="text-[14px] text-gray-500">{stack.tagline}</p>
               </div>
-              <p className="text-[14px] text-gray-500 max-w-[65ch]">{stack.description}</p>
+              <p className="text-[14px] text-gray-500 max-w-[65ch]">
+                {stack.description}
+              </p>
             </article>
 
-            <Button className="flex items-center gap-2">
-              Visit site
-              <Image
-                src="/arrow.svg"
-                alt="arrow-right"
-                width={15}
-                height={15}
-              />
-            </Button>
+            <Link href={stack.url || ''}>
+              <Button className="flex items-center gap-2">
+                Visit site
+                <Image
+                  src="/arrow.svg"
+                  alt="arrow-right"
+                  width={15}
+                  height={15}
+                />
+              </Button>
+            </Link>
           </div>
         </article>
 
@@ -141,6 +146,7 @@ async function getStackBySlug(slug: string) {
   name,
   tagline,
   description,
+  url,
   logo,
   slug
   }`;

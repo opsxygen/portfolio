@@ -46,6 +46,12 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'linkTo',
+      title: 'Links To',
+      type: 'url',
+      description: 'Where the service links to (full url)',
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published At',
       validation: (Rule) => Rule.required(),

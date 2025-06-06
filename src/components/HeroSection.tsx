@@ -8,13 +8,13 @@ import { urlFor } from '@/sanity/lib/image';
 const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
   return (
     <section className="py-12 md:py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-[1.75rem] max-w-[22ch] font-medium mb-8 md:text-left leading-[1.2]">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-[1.75rem] w-full lg:max-w-[22ch] font-medium mb-8 md:text-left leading-[1.2]">
           {siteSettings?.siteTagline}
         </h1>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
-          <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-200">
+        <div className="flex flex-row items-center gap-2 mb-6">
+          <div className="relative w-15 h-15 rounded-full overflow-hidden bg-gray-200">
             {siteSettings?.logo ? (
               <Image
                 src={urlFor(siteSettings.logo).url()}
@@ -31,7 +31,7 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
           </div>
 
           <div>
-            <h2 className="text-[18px] font-semibold">
+            <h2 className="text-[18px] font-medium">
               {siteSettings?.siteTitle}
             </h2>
 

@@ -71,8 +71,8 @@ const TestimonialsSection = ({
   testimonials: Testimonials[];
 }) => {
   return (
-    <section className="max-w-4xl mx-auto py-12 px-4 md:px-8 border-t border-gray-200 overflow-hidden">
-      <div className="max-w-4xl mx-auto mb-12">
+    <section className="max-w-3xl mx-auto py-12 px-4 md:px-8 border-t border-gray-200 overflow-hidden">
+      <div className="max-w-3xl mx-auto mb-12">
         <h2 className="text-[1.25rem] font-medium mb-2">
           Trusted by professionals
         </h2>
