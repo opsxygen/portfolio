@@ -110,8 +110,8 @@ const About = async () => {
                 {siteSettings?.siteDescription}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-2">
-                <Link href="/projects" className="w-full md:w-auto grid">
+              <div className="flex flex-row gap-2">
+                <Link href="/projects">
                   <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2">
                     <span>My projects</span>
                     <Image
@@ -123,7 +123,7 @@ const About = async () => {
                   </Button>
                 </Link>
 
-                <Link href="/contact" className="w-full md:w-auto grid">
+                <Link href="/contact">
                   <Button
                     variant="outline"
                     className="text-[0.75rem] border-gray-300"

@@ -45,8 +45,8 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
           {siteSettings?.siteDescription}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link href="/about" className="w-full md:w-auto grid">
+        <div className="flex  justify-start flex-row gap-4">
+          <Link href="/about">
             <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2">
               <span>More about me</span>
               <Image
@@ -58,7 +58,7 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
             </Button>
           </Link>
 
-          <Link href="/contact" className="w-full md:w-auto grid">
+          <Link href="/contact">
             <Button
               variant="outline"
               className="text-[0.75rem] border-gray-300"

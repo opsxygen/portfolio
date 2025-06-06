@@ -10,10 +10,11 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonials }) => (
         {testimonial.image ? (
           <Image
             src={urlFor(testimonial.image).url()}
-            alt={testimonial.image.alt}
+            alt={testimonial.image.alt || 'Testimonial Image'}
             width={50}
             height={50}
             className="rounded-full"
+      
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-gray-400">

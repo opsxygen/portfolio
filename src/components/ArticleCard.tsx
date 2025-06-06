@@ -65,8 +65,8 @@ const ArticleCard = ({
 
   return (
     <Link href={`/writings/${article.slug.current}`}>
-      <article className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-100 hover:shadow-sm transition-shadow">
-        <div className="aspect-video min-h-[250px] bg-gray-100 overflow-hidden rounded-b-xl">
+      <article className="group relative flex flex-col overflow-hidden rounded-xl w-full md:w-full border border-gray-100 hover:shadow-sm transition-shadow">
+        <div className="h-[250px] bg-gray-100 overflow-hidden rounded-b-xl">
           {article.mainImage ? (
             <Image
               src={urlFor(article.mainImage).url()}
