@@ -32,7 +32,6 @@ export default function ContactPage() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
-    // @ts-expect-error: zodResolver is not a valid resolver
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: '',
