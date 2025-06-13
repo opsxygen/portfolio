@@ -47,13 +47,14 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
 
         <div className="flex  justify-start flex-row gap-4">
           <Link href="/about">
-            <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2">
+            <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2 group">
               <span>More about me</span>
               <Image
                 src="/arrow.svg"
                 alt="Arrow Right"
-                width={15}
-                height={15}
+                width={13}
+                height={13}
+                className='transition-all duration-300 group-hover:rotate-45'
               />
             </Button>
           </Link>
@@ -61,7 +62,7 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
           <Link href="/contact">
             <Button
               variant="outline"
-              className="text-[0.75rem] border-gray-300"
+              className="text-[0.75rem] border-gray-300 transition-all duration-200 hover:shadow-md"
             >
               Contact
             </Button>

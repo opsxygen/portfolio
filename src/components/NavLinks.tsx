@@ -1,39 +1,40 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 const links = [
-  { href: '/', label: 'Home', icon: 'home', iconAlt: 'home-black' },
-  { href: '/about', label: 'About', icon: 'about', iconAlt: 'about-black' },
+  { href: "/", label: "Home", icon: "home", iconAlt: "home-black" },
+  { href: "/about", label: "About", icon: "about", iconAlt: "about-black" },
   {
-    href: '/projects',
-    label: 'Projects',
-    icon: 'project',
-    iconAlt: 'project-black',
+    href: "/projects",
+    label: "Projects",
+    icon: "project",
+    iconAlt: "project-black",
   },
   {
-    href: '/products',
-    label: 'Products',
-    icon: 'product',
-    iconAlt: 'product-black',
+    href: "/products",
+    label: "Products",
+    icon: "product",
+    iconAlt: "product-black",
   },
   {
-    href: '/writings',
-    label: 'Writings',
-    icon: 'post',
-    iconAlt: 'post-black',
+    href: "/writings",
+    label: "Writings",
+    icon: "post",
+    iconAlt: "post-black",
   },
-  { href: '/stacks', label: 'Stacks', icon: 'stack', iconAlt: 'stack-black' },
+  { href: "/stacks", label: "Stacks", icon: "stack", iconAlt: "stack-black" },
 ];
 
 interface NavLinksProps {
   isSidebarOpen: boolean;
+  onClose?: () => void;
 }
 
-export const NavLinks = ({ isSidebarOpen }: NavLinksProps) => {
+export const NavLinks = ({ isSidebarOpen, onClose }: NavLinksProps) => {
   const pathname = usePathname();
 
   return (
@@ -42,17 +43,18 @@ export const NavLinks = ({ isSidebarOpen }: NavLinksProps) => {
         <Link
           key={link.href}
           href={link.href}
+          onClick={onClose ? onClose : () => {}}
           className={cn(
-            'p-2 rounded-sm flex items-center justify-between py-2 group',
+            "p-2 rounded-sm flex items-center justify-between py-2 group",
             pathname === link.href
-              ? 'bg-black text-white'
-              : 'bg-transparent text-black hover:bg-gray-100'
+              ? "bg-black text-white"
+              : "bg-transparent text-black hover:bg-gray-100"
           )}
         >
           <div
             className={cn(
-              'flex items-center w-full gap-2',
-              isSidebarOpen ? 'justify-start' : 'justify-center'
+              "flex items-center w-full gap-2",
+              isSidebarOpen ? "justify-start" : "justify-center"
             )}
           >
             <Image
@@ -70,14 +72,14 @@ export const NavLinks = ({ isSidebarOpen }: NavLinksProps) => {
           {isSidebarOpen && (
             <span
               className={cn(
-                'border rounded-xs bg-transparent',
+                "border rounded-xs bg-transparent",
                 pathname === link.href
-                  ? 'border-transparent'
-                  : 'border-gray-200'
+                  ? "border-transparent"
+                  : "border-gray-200"
               )}
             >
               <Image
-                src={pathname === link.href ? '/arrow.svg' : '/arrow-black.svg'}
+                src={pathname === link.href ? "/arrow.svg" : "/arrow-black.svg"}
                 alt="Arrow Right"
                 className="group-hover:rotate-40 transition-all duration-300"
                 width={15}

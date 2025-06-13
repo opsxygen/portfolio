@@ -1,14 +1,14 @@
-import { urlFor } from '@/sanity/lib/image';
-import { Post } from '@/sanity/lib/queries';
-import Image from 'next/image';
-import Link from 'next/link';
+import { urlFor } from "@/sanity/lib/image";
+import { Post } from "@/sanity/lib/queries";
+import Image from "next/image";
+import Link from "next/link";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };
 
@@ -27,7 +27,7 @@ const ArticleCard = ({
             {article.mainImage ? (
               <Image
                 src={urlFor(article.mainImage).url()}
-                alt={article.mainImage.alt || 'Post Image'}
+                alt={article.mainImage.alt || "Post Image"}
                 width={500}
                 height={500}
                 className="object-cover h-full w-full"
@@ -65,12 +65,12 @@ const ArticleCard = ({
 
   return (
     <Link href={`/writings/${article.slug.current}`}>
-      <article className="group relative flex flex-col overflow-hidden rounded-xl w-full md:w-full border border-gray-100 hover:shadow-sm transition-shadow">
+      <article className="group relative flex flex-col overflow-hidden rounded-xl w-full h-full md:w-full border border-gray-100 hover:shadow-md transition-shadow">
         <div className="h-[250px] bg-gray-100 overflow-hidden rounded-b-xl">
           {article.mainImage ? (
             <Image
-              src={urlFor(article.mainImage).url()}
-              alt={article.mainImage.alt || 'Post Image'}
+              src={urlFor(article.mainImage).url() || ""}
+              alt={article.mainImage.alt || "Post Image"}
               width={500}
               height={500}
               className="object-cover h-full w-full"

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Product } from '@/sanity/lib/queries';
-import ProductCard from './ProductCard';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from './ui/button';
+import React from "react";
+import { Product } from "@/sanity/lib/queries";
+import ProductCard from "./ProductCard";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "./ui/button";
 
 const ProductsSpotlight = ({ products }: { products: Product[] }) => {
   return (
@@ -23,9 +23,15 @@ const ProductsSpotlight = ({ products }: { products: Product[] }) => {
 
       <div className="flex justify-start">
         <Link href="/products" className="">
-          <Button variant="default" className="flex items-center gap-2">
+          <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2 group">
             <span>All products</span>
-            <Image src="/arrow.svg" alt="Arrow Right" width={15} height={15} />
+            <Image
+              src="/arrow.svg"
+              alt="Arrow Right"
+              width={13}
+              height={13}
+              className="transition-all duration-300 group-hover:rotate-45"
+            />
           </Button>
         </Link>
       </div>

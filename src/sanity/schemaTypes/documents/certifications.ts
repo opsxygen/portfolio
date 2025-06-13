@@ -16,6 +16,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'url',
+      title: 'Url',
+      type: 'url',
+    }),
+    defineField({
       name: 'endDate',
       title: 'End Date',
       type: 'date',

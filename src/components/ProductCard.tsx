@@ -1,18 +1,18 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Product } from '@/sanity/lib/queries';
-import { urlFor } from '@/sanity/lib/image';
-import { Button } from './ui/button';
+import Link from "next/link";
+import Image from "next/image";
+import { Product } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
+import { Button } from "./ui/button";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link href={`/products/${product.slug.current}`}>
-      <div className="border border-gray-200 rounded-lg overflow-hidden group">
+      <div className="border border-gray-200 rounded-lg overflow-hidden group transition-all duration-200 hover:shadow-md">
         <div className="relative h-48 bg-gray-100">
           {product?.mainImage ? (
             <Image
               src={urlFor(product.mainImage).url()}
-              alt={product.mainImage.alt || 'Site Logo'}
+              alt={product.mainImage.alt || "Site Logo"}
               width={500}
               height={500}
               className="h-full w-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all"
@@ -49,7 +49,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <div className="grid w-full">
             <Button
               variant="outline"
-              className="text-black border-black flex items-center gap-2 w-full"
+              className="text-[.75rem] text-black border-black flex items-center gap-2 w-full group"
             >
               View Details
               <Image
@@ -57,6 +57,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                 alt="Arrow Right"
                 width={15}
                 height={15}
+                className="transition-all duration-300 group-hover:rotate-45"
               />
             </Button>
           </div>

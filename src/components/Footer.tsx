@@ -1,45 +1,45 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { getSiteSettings } from '@/sanity/lib/getSiteSettings';
-import { SiteSettings } from '@/sanity/lib/queries';
+import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { getSiteSettings } from "@/sanity/lib/getSiteSettings";
+import { SiteSettings } from "@/sanity/lib/queries";
 
 const index = [
-  { label: 'Main Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: "Main Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const resources = [
-  { label: 'Project', href: '/projects' },
-  { label: 'Product', href: '/products' },
-  { label: 'Blog', href: '/writing' },
-  { label: 'Stack', href: '/stacks' },
+  { label: "Project", href: "/projects" },
+  { label: "Product", href: "/products" },
+  { label: "Blog", href: "/writing" },
+  { label: "Stack", href: "/stacks" },
 ];
 
 const contact = [
-  { label: 'Email', href: 'mailto:akwamfon@gmail.com' },
-  { label: 'Discord', href: 'https://discord.com/users/akwamfon' },
-  { label: 'Calendly', href: 'https://calendly.com/akwamfon' },
+  { label: "Email", href: "mailto:akwamfon@gmail.com" },
+  { label: "Discord", href: "https://discord.com/users/akwamfon" },
+  { label: "Calendly", href: "https://calendly.com/akwamfon" },
 ];
 
 const fallbackSocials = [
-  { href: '#', label: 'Facebook', initial: 'FB' },
-  { href: '#', label: 'Twitter', initial: 'TW' },
-  { href: '#', label: 'Dribbble', initial: 'DB' },
-  { href: '#', label: 'Behance', initial: 'BE' },
+  { href: "#", label: "Facebook", initial: "FB" },
+  { href: "#", label: "Twitter", initial: "TW" },
+  { href: "#", label: "Dribbble", initial: "DB" },
+  { href: "#", label: "Behance", initial: "BE" },
 ];
 
 const Footer = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState<
-    'idle' | 'success' | 'error'
-  >('idle');
+    "idle" | "success" | "error"
+  >("idle");
   const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
   const [socialLinks, setSocialLinks] = useState(fallbackSocials);
   useEffect(() => {
@@ -67,7 +67,7 @@ const Footer = () => {
           setSocialLinks(formattedLinks);
         }
       } catch (error) {
-        console.error('Failed to fetch social links:', error);
+        console.error("Failed to fetch social links:", error);
       }
     };
 
@@ -85,52 +85,54 @@ const Footer = () => {
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!email) return;
-  
+
     setIsSubmitting(true);
-  
+
     try {
       const formId = process.env.NEXT_PUBLIC_KIT_FORM_ID;
       const apiKey = process.env.NEXT_PUBLIC_KIT_API_V3;
-  
+
       if (!formId || !apiKey) {
-        throw new Error('Missing ConvertKit API key or Form ID');
+        throw new Error("Missing ConvertKit API key or Form ID");
       }
-  
-      const response = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          api_key: apiKey,
-          email: email,
-          // Optional: you can add `first_name` here if you have it
-          // first_name: firstName
-        })
-      });
-  
+
+      const response = await fetch(
+        `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            api_key: apiKey,
+            email: email,
+            // Optional: you can add `first_name` here if you have it
+            // first_name: firstName
+          }),
+        }
+      );
+
       const data = await response.json();
-  
+
       if (response.ok) {
-        setSubscriptionStatus('success');
-        setEmail('');
+        setSubscriptionStatus("success");
+        setEmail("");
       } else {
-        console.error('Subscription failed:', data);
-        setSubscriptionStatus('error');
+        console.error("Subscription failed:", data);
+        setSubscriptionStatus("error");
       }
     } catch (error) {
       console.error(error);
-      setSubscriptionStatus('error');
+      setSubscriptionStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
-  
 
-  const formattedDate = format(currentTime, 'MMM d, yyyy - h:mm:ss a');
-  const location = 'FCT, Nigeria'; // This would typically come from a geolocation API or user settings
+  const formattedDate = format(currentTime, "MMM d, yyyy - h:mm:ss a");
+  const location = "Abuja, Nigeria"; // This would typically come from a geolocation API or user settings
 
   return (
     <footer className="w-full bg-white py-10">
@@ -169,11 +171,11 @@ const Footer = () => {
               </Button>
             </form>
 
-            {subscriptionStatus === 'success' && (
+            {subscriptionStatus === "success" && (
               <p className="mt-2 text-green-600">Thanks for subscribing!</p>
             )}
 
-            {subscriptionStatus === 'error' && (
+            {subscriptionStatus === "error" && (
               <p className="mt-2 text-red-600">
                 Something went wrong. Please try again.
               </p>

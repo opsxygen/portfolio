@@ -1,7 +1,7 @@
-import { Stack } from '@/sanity/lib/queries';
-import Image from 'next/image';
-import { urlFor } from '@/sanity/lib/image';
-import Link from 'next/link';
+import { Stack } from "@/sanity/lib/queries";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
 const StackCard = ({ stack }: { stack: Stack }) => {
   return (
@@ -14,7 +14,7 @@ const StackCard = ({ stack }: { stack: Stack }) => {
           {stack.logo ? (
             <Image
               src={urlFor(stack.logo).url()}
-              alt={stack.logo.alt}
+              alt={stack.logo.alt || "test"}
               width={50}
               height={50}
               className="rounded-md"
@@ -46,6 +46,14 @@ const StackCard = ({ stack }: { stack: Stack }) => {
           <h3 className="text-[0.875rem] font-medium">{stack.name}</h3>
           <p className="text-[0.75rem] text-gray-500">{stack.tagline}</p>
         </article>
+
+        <Image
+          src="/arrow-black.svg"
+          alt="Arrow Right"
+          width={13}
+          height={13}
+          className="transition-all duration-400 group-hover:scale-100 group-hover:opacity-100 scale-[.5] absolute top-4 right-4 opacity-0"
+        />
       </article>
     </Link>
   );

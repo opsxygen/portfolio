@@ -1,17 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
-import { Button } from './ui/button';
-import Image from 'next/image';
-import { Project } from '@/sanity/lib/queries';
-import { urlFor } from '@/sanity/lib/image';
+import { Button } from "./ui/button";
+import Image from "next/image";
+import { Project } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
 
 const ProjectsSection = ({ projects }: { projects: Project[] }) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
     });
   };
 
@@ -29,12 +29,12 @@ const ProjectsSection = ({ projects }: { projects: Project[] }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {projects.map((project) => (
           <Link href={`/projects/${project.slug.current}`} key={project._id}>
-            <article className="border border-gray-200 rounded-lg overflow-hidden group">
+            <article className="border border-gray-200 rounded-lg overflow-hidden group transition-all duration-200 hover:shadow-md">
               <figure className="relative group h-60 bg-gray-100">
                 {project?.mainImage ? (
                   <Image
                     src={urlFor(project.mainImage).url()}
-                    alt={project.mainImage.alt || 'Site Logo'}
+                    alt={project.mainImage.alt || "Site Logo"}
                     width={500}
                     height={500}
                     className="h-full w-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all"
@@ -77,10 +77,16 @@ const ProjectsSection = ({ projects }: { projects: Project[] }) => {
       </div>
 
       <div className="flex justify-start">
-        <Link href="/projects" className="">
-          <Button variant="default" className="flex items-center gap-2">
+        <Link href="/projects">
+          <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2 group">
             <span>All projects</span>
-            <Image src="/arrow.svg" alt="Arrow Right" width={15} height={15} />
+            <Image
+              src="/arrow.svg"
+              alt="Arrow Right"
+              width={13}
+              height={13}
+              className="transition-all duration-300 group-hover:rotate-45"
+            />
           </Button>
         </Link>
       </div>

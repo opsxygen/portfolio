@@ -16,7 +16,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   };
 
   return (
-    <article className="border border-gray-200 rounded-lg overflow-hidden group">
+    <article className="border border-gray-200 rounded-lg overflow-hidden group transition-all duration-200 hover:shadow-md">
       <figure className="relative group h-60 bg-gray-100">
         {project?.mainImage ? (
           <Image

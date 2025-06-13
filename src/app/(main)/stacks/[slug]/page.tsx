@@ -1,13 +1,13 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { client } from '@/sanity/lib/client';
-import { urlFor } from '@/sanity/lib/image';
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-import StackCard from '@/components/StackCard';
-import { Button } from '@/components/ui/button';
+import StackCard from "@/components/StackCard";
+import { Button } from "@/components/ui/button";
 
-import { Metadata } from 'next';
-import Link from 'next/link';
+import { Metadata } from "next";
+import Link from "next/link";
 
 export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
@@ -23,8 +23,8 @@ export async function generateMetadata({
 
   if (!stack) {
     return {
-      title: 'Stack Not Found',
-      description: 'The requested stack could not be found.',
+      title: "Stack Not Found",
+      description: "The requested stack could not be found.",
     };
   }
 
@@ -62,7 +62,7 @@ export default async function StackPage({ params }: PageProps) {
   return (
     <main className="border-b pb-8 mb-8">
       <div className="max-w-3xl mx-auto py-12 px-4 md:px-0 grid gap-4">
-        <article className="bg-[#05050508] group relative flex flex-col md:flex-row items-start gap-4 justify-start p-4 rounded-xl transition-colors hover:bg-gray-50 border">
+        <article className="bg-[#05050508] group relative flex flex-col md:flex-row items-start gap-4 justify-start p-4 mb-6 rounded-xl transition-colors hover:bg-gray-50 border">
           <div className="relative w-[64px] h-[64px] flex items-center justify-center rounded-md bg-gray-100">
             {stack.logo ? (
               <Image
@@ -106,7 +106,7 @@ export default async function StackPage({ params }: PageProps) {
               </p>
             </article>
 
-            <Link href={stack.url || ''}>
+            <Link href={stack.url || ""}>
               <Button className="flex items-center gap-2">
                 Visit site
                 <Image
@@ -122,12 +122,15 @@ export default async function StackPage({ params }: PageProps) {
 
         {randomStacks.length > 0 && (
           <section className="">
-            <h3 className="text-[20px] font-medium mb-6 border-t pt-8 pb-4">
-              Other Stack
-            </h3>
-            <p className="text-gray-600 text-[0.875rem] max-w-[65ch]">
-              Software & services I use in my workflow.
-            </p>
+            <article className="mb-6">
+              <h3 className="text-[20px] font-medium border-t pt-8">
+                Other Stack
+              </h3>
+              <p className="text-gray-600 text-[0.875rem] max-w-[65ch]">
+                Software & services I use in my workflow.
+              </p>
+            </article>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {randomStacks.map((randomStack) => (
                 <StackCard key={randomStack._id} stack={randomStack} />

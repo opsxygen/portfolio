@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Stack } from '@/sanity/lib/queries';
-import StackCard from './StackCard';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { Stack } from "@/sanity/lib/queries";
+import StackCard from "./StackCard";
 
 const StackSection = ({ stack }: { stack: Stack[] }) => {
   return (
@@ -23,9 +23,15 @@ const StackSection = ({ stack }: { stack: Stack[] }) => {
 
       <div className="mt-4">
         <Link href="/stacks">
-          <Button variant="default" className="flex items-center gap-2">
+          <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2 group">
             <span>More</span>
-            <Image src="/arrow.svg" alt="arrow-right" width={15} height={15} />
+            <Image
+              src="/arrow.svg"
+              alt="Arrow Right"
+              width={13}
+              height={13}
+              className="transition-all duration-300 group-hover:rotate-45"
+            />
           </Button>
         </Link>
       </div>

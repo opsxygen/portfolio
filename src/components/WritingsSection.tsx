@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Post } from '@/sanity/lib/queries';
-import ArticleCard from './ArticleCard';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { Post } from "@/sanity/lib/queries";
+import ArticleCard from "./ArticleCard";
 
 const WritingsSection = ({ writings }: { writings: Post[] }) => {
   return (
@@ -26,9 +26,15 @@ const WritingsSection = ({ writings }: { writings: Post[] }) => {
 
       <div className="">
         <Link href="/writings">
-          <Button variant="default" className="flex items-center gap-2">
+          <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2 group">
             <span>All articles</span>
-            <Image src="/arrow.svg" alt="arrow-right" width={15} height={15} />
+            <Image
+              src="/arrow.svg"
+              alt="Arrow Right"
+              width={13}
+              height={13}
+              className="transition-all duration-300 group-hover:rotate-45"
+            />
           </Button>
         </Link>
       </div>

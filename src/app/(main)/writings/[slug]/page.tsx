@@ -2,10 +2,10 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
-import ProjectCard from '@/components/ProjectCard';
 import { PortableTextComponent } from '@/components/PortableTextComponent';
 
 import { Metadata } from 'next';
+import ArticleCard from '@/components/ArticleCard';
 
 export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
@@ -97,7 +97,7 @@ export default async function WritingPage({ params }: PageProps) {
           </div>
         )}
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           {writing.body && <PortableTextComponent value={writing.body} />}
         </div>
 
@@ -108,7 +108,7 @@ export default async function WritingPage({ params }: PageProps) {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {randomWritings.map((randomWriting) => (
-                <ProjectCard key={randomWriting._id} project={randomWriting} />
+                <ArticleCard key={randomWriting._id} article={randomWriting} />
               ))}
             </div>
           </section>

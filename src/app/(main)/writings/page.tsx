@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Post } from '@/sanity/lib/queries';
-import { client } from '@/sanity/lib/client';
-import ArticleCard from '@/components/ArticleCard';
+import Link from "next/link";
+import Image from "next/image";
+import { Post } from "@/sanity/lib/queries";
+import { client } from "@/sanity/lib/client";
+import ArticleCard from "@/components/ArticleCard";
 
 const Writings = async () => {
   // Fetch projects
@@ -41,9 +41,7 @@ const Writings = async () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {posts.map((post) => (
-            <Link href={`/writings/${post.slug.current}`} key={post._id}>
-              <ArticleCard article={post} />
-            </Link>
+            <ArticleCard article={post} key={post._id} />
           ))}
         </div>
       </div>

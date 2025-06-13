@@ -1,31 +1,31 @@
-import { client } from '@/sanity/lib/client';
-import Link from 'next/link';
-import Image from 'next/image';
-import { urlFor } from '@/sanity/lib/image';
-import { Button } from '@/components/ui/button';
-import ArticleCard from '@/components/ArticleCard';
-import { Post } from '@/sanity/lib/queries';
+import { client } from "@/sanity/lib/client";
+import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { Button } from "@/components/ui/button";
+import ArticleCard from "@/components/ArticleCard";
+import { Post } from "@/sanity/lib/queries";
 
 const formatDateYear = (dateString: string) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
     // month: 'long',
   });
 };
 const formatDateMonthYear = (dateString: string) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
   });
 };
 const formatDateMonthYearDay = (dateString: string) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };
 
@@ -83,7 +83,7 @@ const About = async () => {
                   {siteSettings?.logo ? (
                     <Image
                       src={urlFor(siteSettings.logo).url()}
-                      alt={siteSettings.logo.alt || 'Site Logo'}
+                      alt={siteSettings.logo.alt || "Site Logo"}
                       width={500}
                       height={500}
                       className="object-cover"
@@ -91,7 +91,7 @@ const About = async () => {
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-gray-600">
                       <span>
-                        {siteSettings?.siteTitle?.match(/\b\w/g)?.join('')}
+                        {siteSettings?.siteTitle?.match(/\b\w/g)?.join("")}
                       </span>
                     </div>
                   )}
@@ -173,22 +173,24 @@ const About = async () => {
                   degree: string;
                   description: string;
                 }) => (
-                  <li
-                    key={s.endDate}
-                    className="grid grid-cols-1 md:grid-cols-[10rem_1fr] text-[14px]"
-                  >
-                    <span className="capitalize text-[#4b5563] mb-2 md:mb-0">
-                      {formatDateYear(s.endDate)}
-                    </span>
+                  <Link key={s.degree} href={s.url || "#"}>
+                    <li
+                      key={s.endDate}
+                      className="grid grid-cols-1 md:grid-cols-[10rem_1fr] text-[14px]"
+                    >
+                      <span className="capitalize text-[#4b5563] mb-2 md:mb-0">
+                        {formatDateYear(s.endDate)}
+                      </span>
 
-                    <article className="flex flex-col">
-                      <span className="mb-2 text-[#4b5563]">{s.degree}</span>
-                      <span className="font-medium mb-1">{s.university}</span>
-                      <p className="max-w-[54ch] text-[#4b5563]">
-                        {s.description}
-                      </p>
-                    </article>
-                  </li>
+                      <article className="flex flex-col">
+                        <span className="mb-2 text-[#4b5563]">{s.degree}</span>
+                        <span className="font-medium mb-1">{s.university}</span>
+                        <p className="max-w-[54ch] text-[#4b5563]">
+                          {s.description}
+                        </p>
+                      </article>
+                    </li>
+                  </Link>
                 )
               )}
             </ul>
@@ -216,7 +218,20 @@ const About = async () => {
                       {formatDateMonthYear(s.publishedAt)}
                     </span>
                     <article className="flex flex-col">
-                      <span className="mb-2 text-[#4b5563]">{s.fullTitle}</span>
+                      <Link
+                        href={s.url || "#"}
+                        className="mb-2 text-[#4b5563] flex items-center gap-2 hover:underline group"
+                      >
+                        <span className="text-[#4b5563]">{s.fullTitle}</span>
+                        <Image
+                          src="/arrow-black.svg"
+                          alt="arrow-right"
+                          width={14}
+                          height={14}
+                          className="group-hover:rotate-45 transition-all duration-300"
+                        />
+                      </Link>
+
                       <span className="font-medium mb-1">{s.service}</span>
                       <p className="max-w-[54ch] text-[#4b5563]">
                         {s.description}
@@ -252,8 +267,8 @@ const About = async () => {
                     </span>
                     <article className="flex flex-col">
                       <Link
-                        href={s.url}
-                        className="mb-2 text-[#4b5563] flex items-center gap-2 hover:underline"
+                        href={s.url || "#"}
+                        className="mb-2 text-[#4b5563] flex items-center gap-2 hover:underline group"
                       >
                         {s.position}
                         <Image
@@ -261,6 +276,7 @@ const About = async () => {
                           alt="arrow-right"
                           width={14}
                           height={14}
+                          className="group-hover:rotate-45 transition-all duration-300"
                         />
                       </Link>
                       <span className="font-medium mb-1">{s.company}</span>
@@ -280,7 +296,12 @@ const About = async () => {
 
             <ul className="grid gap-[30px]">
               {certifications.map(
-                (s: { name: string; school: string; endDate: string }) => (
+                (s: {
+                  name: string;
+                  school: string;
+                  endDate: string;
+                  url: string;
+                }) => (
                   <li
                     key={s.name}
                     className="grid grid-cols-1 md:grid-cols-[10rem_1fr] text-[14px]"
@@ -289,8 +310,23 @@ const About = async () => {
                       {formatDateMonthYear(s.endDate)}
                     </span>
                     <article className="flex flex-col">
-                      <span className="mb-2 text-[#4b5563]">{s.name}</span>
-                      <span className="font-medium mb-1">{s.school}</span>
+                      <Link
+                        href={s.url || "#"}
+                        className="mb-2 text-[#4b5563] flex items-center gap-2 hover:underline group"
+                      >
+                        <span className="font-medium  text-[#4b5563]">
+                          {s.school}
+                        </span>
+                        <Image
+                          src="/arrow-black.svg"
+                          alt="arrow-right"
+                          width={14}
+                          height={14}
+                          className="group-hover:rotate-45 transition-all duration-300"
+                        />
+                      </Link>
+
+                      <span className="">{s.name}</span>
                     </article>
                   </li>
                 )

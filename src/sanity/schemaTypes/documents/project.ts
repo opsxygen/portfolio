@@ -78,7 +78,11 @@ export default defineType({
       description: 'The description of the project',
       type: 'text',
     }),
-
+    defineField({
+      name: 'url',
+      title: 'Url',
+      type: 'url',
+    }),
     defineField({
       name: 'publishedAt',
       title: 'Published At',
