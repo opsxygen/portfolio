@@ -16,7 +16,7 @@ const index = [
 const resources = [
   { label: "Project", href: "/projects" },
   { label: "Product", href: "/products" },
-  { label: "Blog", href: "/writing" },
+  { label: "Blog", href: "/writings" },
   { label: "Stack", href: "/stacks" },
 ];
 

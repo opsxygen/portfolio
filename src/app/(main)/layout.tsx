@@ -1,16 +1,16 @@
-import Sidebar from '@/components/Sidebar';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { client } from '@/sanity/lib/client';
-import { Metadata } from 'next';
-import { getSiteSettings } from '@/sanity/lib/getSiteSettings';
-import { urlFor } from '@/sanity/lib/image';
+import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { client } from "@/sanity/lib/client";
+import { Metadata } from "next";
+import { getSiteSettings } from "@/sanity/lib/getSiteSettings";
+import { urlFor } from "@/sanity/lib/image";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
 
   return {
-    title: `${settings.siteTitle} - ${settings.siteSubtitle}`,
+    title: `${settings.siteTitle} - ${settings.siteSubtitle[0] || ""}`,
     description: settings.siteDescription,
     icons: {
       icon: urlFor(settings.logo).url(),

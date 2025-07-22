@@ -10,7 +10,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     // Return fallback data if fetch fails
     return {
       siteTitle: 'Akwamfon Portfolio',
-      siteSubtitle: 'Personal Portfolio',
+      siteSubtitle: ['Personal Portfolio'],
       siteDescription: 'Product Designer',
       siteTagline: 'Product Designer',
       bookAppointmentLink: '/',

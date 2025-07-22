@@ -74,6 +74,34 @@ export const PortableTextComponent: React.FC<PortableTextComponentProps> = ({
           </div>
         );
       },
+      youtube: ({ value }: { value: { url: string } } ) => {
+        if (!value?.url) return null;
+    
+        const getYouTubeID = (url: string) => {
+          const regExp =
+            /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+          const match = url.match(regExp);
+          return match && match[2].length === 11 ? match[2] : null;
+        };
+    
+        const videoId = getYouTubeID(value.url);
+        if (!videoId) return <p>Invalid YouTube URL</p>;
+    
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    
+        return (
+          <div className="my-8 aspect-video w-full">
+            <iframe
+              className="w-full h-full rounded-md"
+              src={embedUrl}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        );
+      },
     },
   };
 

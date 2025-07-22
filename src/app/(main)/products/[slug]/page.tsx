@@ -1,15 +1,15 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { client } from '@/sanity/lib/client';
-import { urlFor } from '@/sanity/lib/image';
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-import { PortableTextComponent } from '@/components/PortableTextComponent';
-import ProductCard from '@/components/ProductCard';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { Gallery } from '@/components/Gallery';
+import { PortableTextComponent } from "@/components/PortableTextComponent";
+import ProductCard from "@/components/ProductCard";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Gallery } from "@/components/Gallery";
 
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
@@ -25,8 +25,8 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: 'Product Not Found',
-      description: 'The requested product could not be found.',
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
     };
   }
 
@@ -75,7 +75,11 @@ export default async function ProductPage({ params }: PageProps) {
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href={product.liveDemo} target="_blank" className="w-full grid">
+          <Link
+            href={product.liveDemo}
+            target="_blank"
+            className="w-full grid group"
+          >
             <Button className="flex items-center gap-2" variant="outline">
               Live Demo
               <Image
@@ -83,10 +87,16 @@ export default async function ProductPage({ params }: PageProps) {
                 alt="Arrow Right"
                 width={15}
                 height={15}
+                className="transition-all duration-300 group-hover:rotate-45"
               />
             </Button>
           </Link>
-          <Link href={product.liveDemo} target="_blank" className="w-full grid">
+
+          <Link
+            href={product.liveDemo}
+            target="_blank"
+            className="w-full grid group"
+          >
             <Button className="flex items-center gap-2">
               Buy - NGN{product.price.toLocaleString()}
               <Image
@@ -94,6 +104,7 @@ export default async function ProductPage({ params }: PageProps) {
                 alt="Arrow Right"
                 width={15}
                 height={15}
+                className="transition-all duration-300 group-hover:rotate-45"
               />
             </Button>
           </Link>

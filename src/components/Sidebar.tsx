@@ -15,7 +15,7 @@ const Sidebar = ({ siteSettings }: { siteSettings: SiteSettings }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isTablet = useMediaQuery({ maxWidth: 1024 });
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     if (isMobile) setIsSidebarOpen(false);

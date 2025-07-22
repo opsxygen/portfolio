@@ -1,9 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import { Button } from './ui/button';
-import Link from 'next/link';
-import { SiteSettings } from '@/sanity/lib/queries';
-import { urlFor } from '@/sanity/lib/image';
+import React from "react";
+import Image from "next/image";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import { SiteSettings } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
+import { FadingText } from "./FadingText";
 
 const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
   return (
@@ -18,26 +19,29 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
             {siteSettings?.logo ? (
               <Image
                 src={urlFor(siteSettings.logo).url()}
-                alt={siteSettings.logo.alt || 'Site Logo'}
+                alt={siteSettings.logo.alt || "Site Logo"}
                 width={500}
                 height={500}
                 className="object-cover"
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-gray-600">
-                <span>{siteSettings?.siteTitle?.match(/\b\w/g)?.join('')}</span>
+                <span>{siteSettings?.siteTitle?.match(/\b\w/g)?.join("")}</span>
               </div>
             )}
           </div>
 
-          <div>
-            <h2 className="text-[18px] font-medium">
+          <div className="flex flex-col">
+            <h2 className="text-[18px] font-medium leading-[1]">
               {siteSettings?.siteTitle}
             </h2>
 
-            <p className="text-[12px] text-gray-600">
-              {siteSettings?.siteSubtitle}
-            </p>
+            <FadingText
+              texts={siteSettings?.siteSubtitle}
+              interval={3000}
+              fadeDuration={500}
+              className="text-[12px] text-gray-600"
+            />
           </div>
         </div>
 
@@ -54,7 +58,7 @@ const HeroSection = ({ siteSettings }: { siteSettings: SiteSettings }) => {
                 alt="Arrow Right"
                 width={13}
                 height={13}
-                className='transition-all duration-300 group-hover:rotate-45'
+                className="transition-all duration-300 group-hover:rotate-45"
               />
             </Button>
           </Link>

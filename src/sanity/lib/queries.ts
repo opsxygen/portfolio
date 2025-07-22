@@ -19,7 +19,7 @@ export const faqsQuery = groq`*[_type == "faq"] | order(order asc){
 
 export type SiteSettings = {
   siteTitle: string;
-  siteSubtitle: string;
+  siteSubtitle: string[];
   siteDescription: string;
   siteTagline: string;
   bookAppointmentLink: string;

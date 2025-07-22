@@ -81,5 +81,35 @@ export default defineType({
         },
       ],
     }),
+    defineArrayMember({
+      name: 'youtube',
+      title: 'YouTube Embed',
+      type: 'object',
+      fields: [
+        {
+          name: 'url',
+          title: 'YouTube URL',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({
+              scheme: ['http', 'https'],
+            }).regex(
+              /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/,
+              { name: 'YouTube URL', invert: false }
+            ),
+        },
+      ],
+      preview: {
+        select: {
+          url: 'url',
+        },
+        prepare({ url }) {
+          return {
+            title: 'YouTube Video',
+            subtitle: url,
+          };
+        },
+      },
+    })
   ],
 });

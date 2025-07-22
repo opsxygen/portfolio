@@ -111,14 +111,17 @@ const About = async () => {
               </p>
 
               <div className="flex flex-row gap-2">
+              
+
                 <Link href="/projects">
-                  <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2">
+                  <Button className="text-[0.75rem] bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-2 group">
                     <span>My projects</span>
                     <Image
                       src="/arrow.svg"
                       alt="Arrow Right"
-                      width={15}
-                      height={15}
+                      width={13}
+                      height={13}
+                      className="transition-all duration-300 group-hover:rotate-45"
                     />
                   </Button>
                 </Link>

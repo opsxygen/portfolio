@@ -29,9 +29,10 @@ export default defineType({
     defineField({
       name: 'siteSubtitle',
       title: 'Site Subtitle',
-      type: 'string',
-      description: 'The subtitle of the site',
-      validation: (Rule) => Rule.required(),
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'The subtitles of the site (multiple allowed)',
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'bookAppointmentLink',

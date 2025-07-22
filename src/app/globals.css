@@ -112,6 +112,8 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+ 
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -121,9 +123,6 @@
   }
 }
 
-html {
-  font-size: 0.975rem; /* Base font size (usually 16px) */
-}
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -144,6 +143,7 @@ html {
 body {
   scrollbar-width: thin;
   scrollbar-color: #fffcfc #fffcfc; /* light gray thumb and very light track */
+ 
 }
 
 body::-webkit-scrollbar {
@@ -190,4 +190,10 @@ body::-webkit-scrollbar-thumb:hover {
 
 .my-scrollable-element::-webkit-scrollbar-thumb:hover {
   background: #fffcfc; /* hover effect */
+}
+
+ 
+/* Not required if you're using Tailwind */
+.transition-opacity {
+  transition: opacity 0.5s ease-in-out;
 }
