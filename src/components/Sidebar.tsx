@@ -76,7 +76,7 @@ const Sidebar = ({ siteSettings }: { siteSettings: SiteSettings }) => {
                   {siteSettings?.siteTitle}
                 </h3>
                 <p className="text-[12px] text-gray-500">
-                  {siteSettings?.siteSubtitle}
+                  {siteSettings?.siteSubtitle[0]}
                 </p>
               </article>
             )}
