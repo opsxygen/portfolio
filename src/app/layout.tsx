@@ -23,8 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const GTM_ID = "GTM-PCMR47CD";
-
 export default function RootLayout({
   children,
 }: Readonly<{
