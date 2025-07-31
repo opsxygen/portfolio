@@ -1,15 +1,17 @@
-import { client } from '@/sanity/lib/client';
-import HeroSection from '@/components/HeroSection';
-import ProjectsSection from '@/components/ProjectsSection';
-import ServicesSection from '@/components/ServicesSection';
+export const dynamic = "force-dynamic";
 
-import ProductsSpotlight from '@/components/ProductsSpotlight';
-import Footer from '@/components/Footer';
-import Sidebar from '@/components/Sidebar';
-import Navbar from '@/components/Navbar';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import StackSection from '@/components/StackSection';
-import WritingsSection from '@/components/WritingsSection';
+import { client } from "@/sanity/lib/client";
+import HeroSection from "@/components/HeroSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import ServicesSection from "@/components/ServicesSection";
+
+import ProductsSpotlight from "@/components/ProductsSpotlight";
+import Footer from "@/components/Footer";
+import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import StackSection from "@/components/StackSection";
+import WritingsSection from "@/components/WritingsSection";
 
 export default async function page() {
   // Fetch all required data in parallel using Promise.all
@@ -38,7 +40,6 @@ export default async function page() {
     client.fetch(`*[_type == \"service\"] | order(_createdAt desc)`),
   ]);
 
-  console.log(stack)
   return (
     <div className="max-h-screen overflow-hidden grid grid-cols-1 md:grid-cols-[max-content_1fr]">
       <Sidebar siteSettings={siteSettings} />
