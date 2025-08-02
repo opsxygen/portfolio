@@ -42,7 +42,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <article className="flex items-center flex-wrap  mb-2 gap- justify-between">
             <h3 className="font-medium text-base">{product.name}</h3>
             <span className="text-[0.875rem] font-medium border rounded-full bg-gray-100 text-black border-gray-200 px-[.2rem]">
-              NGN{product.price.toLocaleString()}
+              ${product.price.toLocaleString()}
             </span>
           </article>
           <p className="text-[0.75rem] text-gray-600 mb-3">{product.tagline}</p>

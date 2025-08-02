@@ -22,7 +22,7 @@ const ArticleCard = ({
   if (aboutPage)
     return (
       <Link href={`/writings/${article.slug.current}`}>
-        <article className="group relative flex flex-col overflow-hidden rounded-xl w-full md:max-w-md">
+        <article className="group relative flex flex-col overflow-hidden rounded-xl w-full md:max-w-md group">
           <div className="aspect-video min-h-[250px] bg-gray-100 overflow-hidden rounded-b-xl">
             {article.mainImage ? (
               <Image
@@ -30,7 +30,7 @@ const ArticleCard = ({
                 alt={article.mainImage.alt || "Post Image"}
                 width={500}
                 height={500}
-                className="object-cover h-full w-full"
+                className="object-cover h-full w-full scale-[1.1] group-hover:scale-100 transition-all duration-200"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-300">

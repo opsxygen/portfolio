@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,6 +7,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { Button } from "@/components/ui/button";
 import ArticleCard from "@/components/ArticleCard";
 import { Post } from "@/sanity/lib/queries";
+import { FadingText } from "@/components/FadingText";
 
 const formatDateYear = (dateString: string) => {
   const date = new Date(dateString);
@@ -98,11 +101,18 @@ const About = async () => {
                 </div>
 
                 <div>
-                  <h2 className="text-[18px] font-semibold">
+                  <h2 className="text-[18px] font-semibold leading-[.5]">
                     {siteSettings?.siteTitle}
                   </h2>
 
-                  <p className="text-[12px]">{siteSettings?.siteSubtitle}</p>
+                  {/* <p className="text-[12px]">{siteSettings?.siteSubtitle}</p> */}
+
+                  <FadingText
+                    texts={siteSettings?.siteSubtitle}
+                    interval={3000}
+                    fadeDuration={500}
+                    className="text-[12px] text-gray-600"
+                  />
                 </div>
               </div>
               <span className="text-[20px] font-medium ">About</span>

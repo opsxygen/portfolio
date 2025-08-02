@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
@@ -6,6 +8,7 @@ import ProjectCard from '@/components/ProjectCard';
 import { PortableTextComponent } from '@/components/PortableTextComponent';
 
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export type paramsType = Promise<{ slug: string }>;
 type PageProps = {
@@ -120,7 +123,9 @@ export default async function ProjectPage({ params }: PageProps) {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {randomProjects.map((randomProject) => (
-                 <ProjectCard key={randomProject._id} project={randomProject} />
+                <Link href={`/projects/${randomProject.slug.current}`} key={randomProject._id}>
+                  <ProjectCard key={randomProject._id} project={randomProject} />
+                </Link>
               ))}
             </div>
           </section>
